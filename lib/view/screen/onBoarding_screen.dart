@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:foodtek/constant/colors.dart';
 import 'package:foodtek/constant/onboarding_data.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:foodtek/core/functions/determine_position.dart';
 import 'package:foodtek/cubit/onboarding_cubit.dart';
 import 'package:foodtek/state/onboarding_cubit_state.dart';
@@ -18,6 +18,10 @@ class OnboardingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final onboardingTitles = getOnboardingTitles(context);
+    final onboardingDescriptions = getOnboardingDescriptions(context);
+    final firstButtonTexts = getFirstButtonTexts(context);
+    final secondButtonTexts = getSecondButtonTexts(context);
     // one time OnBoarding screen
     return Scaffold(
       backgroundColor: Colors.white,
@@ -109,7 +113,7 @@ class OnboardingScreen extends StatelessWidget {
                         );
                       },
                       child: Text(
-                        "Skip",
+                        AppLocalizations.of(context)!.skip,
                         style: TextStyle(color: Colors.black),
                       ),
                     ),

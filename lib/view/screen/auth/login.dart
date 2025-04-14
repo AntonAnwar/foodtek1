@@ -11,6 +11,7 @@ import 'package:foodtek/view/widgets/auth/custom_foodtek_logo_widget.dart';
 import 'package:foodtek/view/widgets/auth/custom_social_login_button.dart';
 import 'package:foodtek/view/widgets/auth/custom_text_felid_widget.dart';
 import 'package:foodtek/view/widgets/auth/foodtek_button.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -85,14 +86,14 @@ class _LoginScreenState extends State<LoginScreen> {
                       // Login Card
                       CustomAuthCard(
                         arrowIcon: false,
-                        title: "Login",
+                        title: AppLocalizations.of(context)!.login,
                         backTo: "",
                         login: "",
                         page: "",
                         titleAlign: TextAlign.center,
                         description: "Don't have an account?",
                         descriptionAlign: TextAlign.center,
-                        descriptionword: " Sign Up",
+                        descriptionword: AppLocalizations.of(context)!.sign_up,
                         descriptionWordOnTap: () {
                           Navigator.pushReplacement(
                             context,

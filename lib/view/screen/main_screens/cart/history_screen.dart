@@ -21,7 +21,7 @@ class HistoryScreen extends StatelessWidget {
             child: Column(
               children: [
                 SizedBox(height: 20),
-                LocationNotificationSrearch(showSearchBar: true),
+                //LocationNotificationSrearch(showSearchBar: true),
                 const SizedBox(height: 15),
                 // Your other content goes here...
               ],

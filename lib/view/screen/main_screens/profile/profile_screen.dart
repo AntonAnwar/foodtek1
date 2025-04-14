@@ -7,6 +7,7 @@ import 'package:foodtek/constant/colors.dart';
 import 'package:foodtek/view/widgets/auth/foodtek_button.dart';
 import 'package:image_picker/image_picker.dart';
 
+import '../../../../core/responseve.dart';
 import '../../../widgets/auth/custom_text_felid_widget.dart';
 
 class ProfileView extends StatefulWidget {
@@ -57,26 +58,25 @@ class _ProfileViewState extends State<ProfileView> {
                   image = await picker.pickImage(source: ImageSource.gallery);
                   setState(() {});
                 },
-                child: Container(
-                  width: 100,
-                  height: 100,
-                  decoration: BoxDecoration(
-                    color: AppColors.primaryColor,
+                child: CircleAvatar(
+                  radius: 60,
+                  child:image != null
+                      ? ClipRRect(
                     borderRadius: BorderRadius.circular(50),
+                    child: Image.file(
+                      File(image!.path),
+                      width: 120,
+                      height: 120,
+                      fit: BoxFit.cover,
+                    ),
+                  )
+                      :  Image.asset(
+                    "assets/images/profile/img_7.png",
+                    width: 120,
+                    height: 120,
+                    fit: BoxFit.fill,
+
                   ),
-                  alignment: Alignment.center,
-                  child:
-                      image != null
-                          ? ClipRRect(
-                            borderRadius: BorderRadius.circular(50),
-                            child: Image.file(
-                              File(image!.path),
-                              width: 100,
-                              height: 100,
-                              fit: BoxFit.cover,
-                            ),
-                          )
-                          : Icon(Icons.person, size: 65, color: Colors.black),
                 ),
               ),
               SizedBox(height: 10),

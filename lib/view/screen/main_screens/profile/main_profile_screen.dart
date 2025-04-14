@@ -1,11 +1,12 @@
-// ignore_for_file: deprecated_member_use
-
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:foodtek/constant/colors.dart';
+import 'package:foodtek/core/responseve.dart';
 import 'package:foodtek/view/screen/main_screens/profile/profile_screen.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
+import '../../../../cubit/lang_cubit.dart';
 import '../../../widgets/main_page_widgets/profile_option.dart';
 
 class MainProfileScreen extends StatefulWidget {
@@ -41,28 +42,53 @@ class _MainProfileScreen extends State<MainProfileScreen> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               const SizedBox(height: 10),
-
-              Container(
-                width: 100,
-                height: 100,
-                decoration: BoxDecoration(
-                  color: AppColors.primaryColor,
+              CircleAvatar(
+                radius: 60,
+                child:image != null
+                    ? ClipRRect(
                   borderRadius: BorderRadius.circular(50),
+                  child: Image.file(
+                    File(image!.path),
+                    width: 120,
+                    height: 120,
+                    fit: BoxFit.cover,
+                  ),
+                )
+                    :  Image.asset(
+                  "assets/images/profile/img_7.png",
+                  width: 120,
+                  height: 120,
+                  fit: BoxFit.fill,
+
                 ),
-                alignment: Alignment.center,
-                child:
-                    image != null
-                        ? ClipRRect(
-                          borderRadius: BorderRadius.circular(50),
-                          child: Image.file(
-                            File(image!.path),
-                            width: 100,
-                            height: 100,
-                            fit: BoxFit.cover,
-                          ),
-                        )
-                        : Icon(Icons.person, size: 65, color: Colors.black),
               ),
+              // Container(
+              //   width: 120,
+              //   height: 120,
+              //   decoration: BoxDecoration(
+              //     color: AppColors.primaryColor,
+              //     borderRadius: BorderRadius.circular(50),
+              //   ),
+              //   alignment: Alignment.center,
+              //   child:
+              //       image != null
+              //           ? ClipRRect(
+              //             borderRadius: BorderRadius.circular(50),
+              //             child: Image.file(
+              //               File(image!.path),
+              //               width: 120,
+              //               height: 120,
+              //               fit: BoxFit.cover,
+              //             ),
+              //           )
+              //           :  Image.asset(
+              //         "assets/images/profile/img_7.png",
+              //         width: 120,
+              //         height: 120,
+              //         fit: BoxFit.fill,
+              //
+              //       ),
+              // ),
               SizedBox(height: 10),
               Text(
                 "Ahmad Daboor",
@@ -75,7 +101,7 @@ class _MainProfileScreen extends State<MainProfileScreen> {
               ),
               SizedBox(height: 20),
               Container(
-                margin: const EdgeInsets.symmetric(horizontal: 20),
+                margin: const EdgeInsets.symmetric(horizontal: 10),
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(12),
@@ -93,13 +119,19 @@ class _MainProfileScreen extends State<MainProfileScreen> {
                     children: [
                       ProfileOption(
                         "Personal Information",
-                        leading: Icon(Icons.person_add_alt_1),
+                        leading: Image.asset(
+                          "assets/images/profile/img.png",
+                          width: responsiveHeight(context, 24),
+                          height: responsiveWidth(context, 24),
+                        ),
                         onTap: () {
                           PersistentNavBarNavigator.pushNewScreen(
                             context,
-                            screen:  ProfileView(),
-                            withNavBar: false, // OPTIONAL VALUE. True by default.
-                            pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                            screen: ProfileView(),
+                            withNavBar: false,
+                            // OPTIONAL VALUE. True by default.
+                            pageTransitionAnimation:
+                                PageTransitionAnimation.cupertino,
                           );
                           // Navigator.push(
                           //   context,
@@ -112,17 +144,31 @@ class _MainProfileScreen extends State<MainProfileScreen> {
                       ProfileOption(
                         "Language",
                         trailing: Text("العربية"),
-                        leading: Icon(Icons.language),
-                        onTap: () {},
+                        leading: Image.asset(
+                          "assets/images/profile/img_1.png",
+                          width: responsiveHeight(context, 24),
+                          height: responsiveWidth(context, 24),
+                        ),
+                        onTap: () {
+                          //context.read<LangCubit>().changeLang('ar');
+                        },
                       ),
                       ProfileOption(
                         "Privacy Policy",
-                        leading: Icon(Icons.policy_outlined),
+                        leading: Image.asset(
+                          "assets/images/profile/img_2.png",
+                          width: responsiveHeight(context, 24),
+                          height: responsiveWidth(context, 24),
+                        ),
                         onTap: () {},
                       ),
                       ProfileOption(
                         "Setting",
-                        leading: Icon(Icons.settings),
+                        leading: Image.asset(
+                          "assets/images/profile/img_3.png",
+                          width: responsiveHeight(context, 24),
+                          height: responsiveWidth(context, 24),
+                        ),
                         onTap: () {},
                       ),
                     ],
@@ -132,7 +178,7 @@ class _MainProfileScreen extends State<MainProfileScreen> {
 
               SizedBox(height: 10),
               Container(
-                margin: const EdgeInsets.symmetric(horizontal: 20),
+                margin: const EdgeInsets.symmetric(horizontal: 10),
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(12),
@@ -148,26 +194,64 @@ class _MainProfileScreen extends State<MainProfileScreen> {
                   color: Colors.transparent,
                   child: Column(
                     children: [
-                      SwitchListTile(
-                        activeTrackColor: AppColors.primaryColor,
-                        title: Text("Push Notifications"),
-                        value: isPushNotificationsEnabled,
-                        onChanged: (value) {
-                          setState(() {
-                            isPushNotificationsEnabled = value;
-                          });
-                        },
+                      //Push Notifications
+                      ProfileOption(
+                        "Push Notifications",
+                        leading: Image.asset(
+                          "assets/images/profile/img_4.png",
+                          width: responsiveHeight(context, 24),
+                          height: responsiveWidth(context, 24),
+                        ),
+                        trailing: Switch(
+                          activeTrackColor: AppColors.primaryColor,
+                          value: isPushNotificationsEnabled,
+                          onChanged: (value) {
+                            setState(() {
+                              isPushNotificationsEnabled = value;
+                            });
+                          },
+                        ),
+                        onTap: () {},
                       ),
-                      SwitchListTile(
-                        activeTrackColor: AppColors.primaryColor,
-                        title: Text("Promotional Notifications"),
-                        value: isPromotionalNotificationsEnabled,
-                        onChanged: (value) {
-                          setState(() {
-                            isPromotionalNotificationsEnabled = value;
-                          });
-                        },
+                      //Promotional Notifications
+                      ProfileOption(
+                        "Promotional Notifications",
+                        leading: Image.asset(
+                          "assets/images/profile/img_4.png",
+                          width: responsiveHeight(context, 24),
+                          height: responsiveWidth(context, 24),
+                        ),
+                        trailing: Switch(
+                          activeTrackColor: AppColors.primaryColor,
+                          value: isPromotionalNotificationsEnabled,
+                          onChanged: (value) {
+                            setState(() {
+                              isPromotionalNotificationsEnabled = value;
+                            });
+                          },
+                        ),
+                        onTap: () {},
                       ),
+                      // SwitchListTile(
+                      //   activeTrackColor: AppColors.primaryColor,
+                      //   title: Text("Push Notifications"),
+                      //   value: isPushNotificationsEnabled,
+                      //   onChanged: (value) {
+                      //     setState(() {
+                      //       isPushNotificationsEnabled = value;
+                      //     });
+                      //   },
+                      // ),
+                      // SwitchListTile(
+                      //   activeTrackColor: AppColors.primaryColor,
+                      //   title: Text("Promotional Notifications"),
+                      //   value: isPromotionalNotificationsEnabled,
+                      //   onChanged: (value) {
+                      //     setState(() {
+                      //       isPromotionalNotificationsEnabled = value;
+                      //     });
+                      //   },
+                      // ),
                     ],
                   ),
                 ),
@@ -175,7 +259,7 @@ class _MainProfileScreen extends State<MainProfileScreen> {
 
               SizedBox(height: 10),
               Container(
-                margin: const EdgeInsets.symmetric(horizontal: 20),
+                margin: const EdgeInsets.symmetric(horizontal: 10),
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(12),
@@ -193,12 +277,20 @@ class _MainProfileScreen extends State<MainProfileScreen> {
                     children: [
                       ProfileOption(
                         "Help Center",
-                        leading: Icon(Icons.help_center_outlined),
+                        leading: Image.asset(
+                          "assets/images/profile/img_5.png",
+                          width: responsiveHeight(context, 24),
+                          height: responsiveWidth(context, 24),
+                        ),
                         onTap: () {},
                       ),
                       InkWell(
                         child: ListTile(
-                          leading: Icon(Icons.logout, color: Colors.red),
+                          leading: Image.asset(
+                            "assets/images/profile/img_6.png",
+                            width: responsiveHeight(context, 24),
+                            height: responsiveWidth(context, 24),
+                          ),
                           title: Text(
                             "Log Out",
                             style: TextStyle(color: Colors.red),
