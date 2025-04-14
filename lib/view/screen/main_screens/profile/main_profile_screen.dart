@@ -43,7 +43,9 @@ class _MainProfileScreen extends State<MainProfileScreen> {
             children: [
               const SizedBox(height: 10),
               CircleAvatar(
+                backgroundColor: AppColors.primaryColor,
                 radius: 60,
+
                 child:image != null
                     ? ClipRRect(
                   borderRadius: BorderRadius.circular(50),

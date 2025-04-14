@@ -3,6 +3,7 @@ import 'package:foodtek/constant/colors.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../../../core/responseve.dart';
 import '../../../widgets/main_page_widgets/round_textfield.dart';
 import 'order_details_page.dart';
 
@@ -14,7 +15,8 @@ class DeliveryTrackingScreen extends StatefulWidget {
 }
 
 class _DeliveryTrackingScreenState extends State<DeliveryTrackingScreen> {
-  String? address; // for the address it is currently being saved in  SharedPreferences
+  String?
+  address; // for the address it is currently being saved in  SharedPreferences
 
   @override
   void initState() {
@@ -209,9 +211,25 @@ class _DeliveryTrackingScreenState extends State<DeliveryTrackingScreen> {
                       ],
                     ),
                     Spacer(),
-                    Icon(Icons.call, color: Colors.green),
-                    SizedBox(width: 16),
-                    Icon(Icons.message, color: Colors.orange),
+                    IconButton(
+                      onPressed: () {},
+                      icon: Image.asset(
+                        "assets/images/mainPage/location/img_6.png",
+                        fit: BoxFit.cover,
+                        width: responsiveWidth(context, 30),
+                        height: responsiveHeight(context, 30),
+                      ),
+                    ),
+                    const SizedBox(width: 5),
+                    IconButton(
+                      onPressed: () {},
+                      icon: Image.asset(
+                        "assets/images/mainPage/location/img_7.png",
+                        fit: BoxFit.cover,
+                        width: responsiveWidth(context, 30),
+                        height: responsiveHeight(context, 30),
+                      ),
+                    ),
                   ],
                 ),
 

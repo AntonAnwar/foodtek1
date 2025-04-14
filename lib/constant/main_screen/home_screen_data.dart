@@ -138,7 +138,7 @@ final List<Category> recommendedItems = [
 ];
 
 // Categories
-final List<String> categories = ["All", "Burger", "Pizza", "Sandwich"];
+final List<String> categories = ["All", "Burger", "Pizza", "Sandwich","Sandwich","Sandwich"];
 String selectedCategory = "All";
 
 // Unified List of All Items

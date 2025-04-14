@@ -19,7 +19,7 @@ class NotificationWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height * 0.85, // Almost full-screen
+      height: MediaQuery.of(context).size.height * 0.65, // Almost full-screen
       padding: EdgeInsets.all(16),
       child: DefaultTabController(
         length: 3,

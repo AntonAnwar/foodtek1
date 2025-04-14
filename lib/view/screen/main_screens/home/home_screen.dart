@@ -56,6 +56,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       "Burger": "🍔",
                       "Pizza": "🍕",
                       "Sandwich": "🌭",
+                      "Sandwich": "🌭",
+                      "Sandwich": "🌭",
+
                     };
 
                     return GestureDetector(

@@ -1,188 +1,240 @@
 import 'package:flutter/material.dart';
 import 'package:foodtek/constant/colors.dart';
+import 'package:foodtek/core/responseve.dart';
 import 'package:foodtek/view/screen/main_screens/history/chat.dart';
 import 'package:foodtek/view/screen/main_screens/history/delivery_tracking_screen.dart';
 import 'package:foodtek/view/widgets/auth/foodtek_button.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
+import 'package:timelines_plus/timelines_plus.dart';
 
 class OrderDetailsPage extends StatelessWidget {
   const OrderDetailsPage({super.key});
 
-  Widget statusStep(IconData icon, String text, bool isDone) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Icon(icon, color: isDone ? Colors.green : Colors.grey, size: 30),
-        const SizedBox(width: 10),
-        Expanded(
-          child: Text(
-            text,
-            style: TextStyle(
-              fontSize: 16,
-              color: isDone ? Colors.black : Colors.grey,
-              fontWeight: isDone ? FontWeight.w600 : FontWeight.normal,
-            ),
-          ),
-        ),
-      ],
-    );
-  }
+  // Widget statusStep(IconData icon, String text, bool isDone) {
+  //   return Row(
+  //     crossAxisAlignment: CrossAxisAlignment.start,
+  //     children: [
+  //       Icon(icon, color: isDone ? Colors.green : Colors.grey, size: 30),
+  //       const SizedBox(width: 10),
+  //       Expanded(
+  //         child: Text(
+  //           text,
+  //           style: TextStyle(
+  //             fontSize: 16,
+  //             color: isDone ? Colors.black : Colors.grey,
+  //             fontWeight: isDone ? FontWeight.w600 : FontWeight.normal,
+  //           ),
+  //         ),
+  //       ),
+  //     ],
+  //   );
+  // }
 
   @override
   Widget build(BuildContext context) {
+    final steps = [
+      {
+        'title': "Order received",
+        'icon': "assets/images/mainPage/location/img_2.png",
+      },
+      {
+        'title': "Cooking your order",
+        'icon': "assets/images/mainPage/location/img_3.png",
+      },
+      {
+        'title': "Courier is picking up order",
+        'icon': "assets/images/mainPage/location/img_4.png",
+      },
+      {
+        'title': "Order delivered",
+        'icon': "assets/images/mainPage/location/img_5.png",
+      },
+    ];
+    int currentStep = 3; // change this to reflect order status
+
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 50),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                // IconButton(
-                //   onPressed: () {
-                //     Navigator.pop(context);
-                //   },
-                //   icon: Icon(Icons.arrow_back),
-                // ),
-                const Text(
-                  "Order Details",
-                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-                ),
-              ],
-            ),
-            const SizedBox(height: 20),
-
-            Row(
-              children: [
-                Image.asset(
-                  'assets/images/mainPage/location/img.png',
-                  width: 40,
-                ),
-                const SizedBox(width: 12),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Order ID",
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    Text(
-                      "#OD3849384",
-                      style: TextStyle(color: AppColors.onBoardingtextColor),
-                    ),
-                    Text("25m"),
-                  ],
-                ),
-              ],
-            ),
-
-            const SizedBox(height: 30),
-
-            statusStep(Icons.check_circle, "Order received", true),
-            const SizedBox(height: 16),
-            statusStep(Icons.local_fire_department, "Cooking your order", true),
-            const SizedBox(height: 16),
-            statusStep(
-              Icons.delivery_dining,
-              "Courier is picking up order",
-              false,
-            ),
-            const SizedBox(height: 30),
-            statusStep(Icons.home, "Order delivered", false),
-
-            const SizedBox(height: 20),
-            const Divider(),
-
-            Row(
-              children: [
-                const CircleAvatar(
-                  backgroundImage: AssetImage(
-                    'assets/images/mainPage/location/img_1.png',
+      body: SafeArea(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                "Order Details",
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 20),
+              Row(
+                children: [
+                  Image.asset(
+                    'assets/images/mainPage/location/img.png',
+                    width: 40,
                   ),
-                  radius: 25,
-                ),
-                const SizedBox(width: 10),
-                const Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Your Delivery Hero",
-                      style: TextStyle(color: Colors.grey),
-                    ),
-                    Text(
-                      "Alexander V.",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16,
+                  const SizedBox(width: 12),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        "Order ID",
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
-                    ),
-                    Row(
-                      children: [
-                        Icon(Icons.star, color: Colors.orange, size: 16),
-                        Text(" 4.9"),
-                      ],
-                    ),
-                  ],
+                      Text(
+                        "#OD3849384",
+                        style: TextStyle(color: AppColors.onBoardingtextColor),
+                      ),
+                      const Text("25m"),
+                    ],
+                  ),
+                ],
+              ),
+              const SizedBox(height: 30),
+
+              /// TIMELINE  the progress bar on the left
+              FixedTimeline.tileBuilder(
+                theme: TimelineThemeData(
+                  nodePosition: 0,
+                  indicatorTheme: const IndicatorThemeData(size: 28),
+                  connectorTheme: const ConnectorThemeData(thickness: 3.0),
                 ),
-                const Spacer(),
-                Icon(Icons.call, color: Colors.green),
-                const SizedBox(width: 16),
-                IconButton(
+                builder: TimelineTileBuilder.connected(
+                  connectionDirection: ConnectionDirection.after,
+                  itemCount: steps.length,
+                  contentsBuilder: (context, index) {
+                    return Padding(
+                      padding: const EdgeInsets.only(left: 8.0, bottom: 32),
+                      child: Text(
+                        steps[index]['title'] as String,
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight:
+                              index == currentStep
+                                  ? FontWeight.w600
+                                  : FontWeight.normal,
+                          color:
+                              index <= currentStep ? Colors.black : Colors.grey,
+                        ),
+                      ),
+                    );
+                  },
+                  indicatorBuilder: (context, index) {
+                    return DotIndicator(
+                      size: 40,
+                      color: index <= currentStep ? Colors.green : Colors.grey,
+                      child: Image.asset(
+                        color: index <= currentStep ? Colors.white : Colors.white,
+                        steps[index]['icon'] as String,
+                        fit: BoxFit.contain,
+                        width: responsiveWidth(context, 18),
+                        height: responsiveHeight(context, 18),
+                      ),
+                    );
+                  },
+                  connectorBuilder:
+                      (context, index, ___) => SolidLineConnector(
+                        color: index < currentStep ? Colors.green : Colors.grey,
+                      ),
+                ),
+              ),
+
+              const Divider(height: 40),
+
+              /// DELIVERY HERO
+              Row(
+                children: [
+                  const CircleAvatar(
+                    backgroundImage: AssetImage(
+                      'assets/images/mainPage/location/img_1.png',
+                    ),
+                    radius: 25,
+                  ),
+                  const SizedBox(width: 10),
+                  const Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Your Delivery Hero",
+                        style: TextStyle(color: Colors.grey),
+                      ),
+                      Text(
+                        "Alexander V.",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                        ),
+                      ),
+                      Row(
+                        children: [
+                          Icon(Icons.star, color: Colors.orange, size: 16),
+                          Text(" 4.9"),
+                        ],
+                      ),
+                    ],
+                  ),
+                  const Spacer(),
+                  IconButton(
+                    onPressed: () {
+                    },
+                    icon: Image.asset(
+                      "assets/images/mainPage/location/img_6.png",
+                      fit: BoxFit.cover,
+                      width: responsiveWidth(context, 30),
+                      height: responsiveHeight(context, 30),
+                    ),
+                  ),
+                  const SizedBox(width: 5),
+                  IconButton(
+                    onPressed: () {
+                      PersistentNavBarNavigator.pushNewScreen(
+                        context,
+                        screen: const ChatPage(),
+                        withNavBar: false,
+                        pageTransitionAnimation:
+                            PageTransitionAnimation.cupertino,
+                      );
+                    },
+                    icon: Image.asset(
+                      "assets/images/mainPage/location/img_7.png",
+                      fit: BoxFit.cover,
+                      width: responsiveWidth(context, 30),
+                      height: responsiveHeight(context, 30),
+                    ),
+                  ),
+                ],
+              ),
+
+              const SizedBox(height: 20),
+              const Text("Your Location"),
+              const SizedBox(height: 10),
+              const Row(
+                children: [
+                  Icon(Icons.location_on, color: Colors.green),
+                  SizedBox(width: 8),
+                  Flexible(
+                    child: Text("123 Al-Madina Street, Abdali, Amman, Jordan"),
+                  ),
+                ],
+              ),
+
+              const SizedBox(height: 30),
+              Center(
+                child: FoodtekButton(
+                  text: "Live Track",
                   onPressed: () {
                     PersistentNavBarNavigator.pushNewScreen(
                       context,
-                      screen:  ChatPage(),
-                      withNavBar: false, // OPTIONAL VALUE. True by default.
-                      pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                      screen: const DeliveryTrackingScreen(),
+                      withNavBar: false,
+                      pageTransitionAnimation:
+                          PageTransitionAnimation.cupertino,
                     );
-                    // Navigator.push(
-                    //   context,
-                    //   MaterialPageRoute(builder: (context) => ChatPage()),
-                    // );
                   },
-                  icon: Icon(Icons.message, color: Colors.orange),
                 ),
-              ],
-            ),
-
-            const SizedBox(height: 20),
-            Text("your Location"),
-            SizedBox(height: 15),
-            const Row(
-              children: [
-                Icon(Icons.location_on, color: Colors.green),
-                SizedBox(width: 8),
-                Flexible(
-                  child: Text("123 Al-Madina Street, Abdali, Amman, Jordan"),
-                ),
-              ],
-            ),
-
-            const SizedBox(height: 30),
-
-            Center(
-              child: FoodtekButton(
-                text: "Live Track",
-                onPressed: () {
-                  PersistentNavBarNavigator.pushNewScreen(
-                    context,
-                    screen:  DeliveryTrackingScreen(),
-                    withNavBar: false, // OPTIONAL VALUE. True by default.
-                    pageTransitionAnimation: PageTransitionAnimation.cupertino,
-                  );
-                  // Navigator.push(
-                  //   context,
-                  //   MaterialPageRoute(
-                  //     builder: (context) => DeliveryTrackingScreen(),
-                  //   ),
-                  // );
-                },
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

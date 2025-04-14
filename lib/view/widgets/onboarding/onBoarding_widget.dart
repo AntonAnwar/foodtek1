@@ -37,7 +37,7 @@ class OnboardingWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
 
       children: [
-        // stack headre images
+        // stack header images
         Stack(
           alignment: AlignmentDirectional.topCenter,
           children: [
@@ -83,16 +83,19 @@ class OnboardingWidget extends StatelessWidget {
         const SizedBox(height: 15),
 
         // sub title text
-        SizedBox(
-          height: responsiveHeight(context, 100),
-          child: Text(
-            description,
-            textAlign: TextAlign.center,
-            softWrap: true,
-            style: const TextStyle(
-              fontSize: 14,
-              color: AppColors.onBoardingtextColor,
-              height: 1.5,
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: SizedBox(
+            height: responsiveHeight(context, 100),
+            child: Text(
+              description,
+              textAlign: TextAlign.center,
+              softWrap: true,
+              style: const TextStyle(
+                fontSize: 14,
+                color: AppColors.onBoardingtextColor,
+                height: 1.5,
+              ),
             ),
           ),
         ),
@@ -103,12 +106,14 @@ class OnboardingWidget extends StatelessWidget {
         Container(
           width: responsiveWidth(context, 307),
           height: responsiveHeight(context, 58),
+
           decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [AppColors.primaryColor, AppColors.secondaryColor],
-              begin: Alignment.centerLeft,
-              end: Alignment.centerRight,
-            ),
+            color: AppColors.primaryColor,
+            // gradient: LinearGradient(
+            //   colors: [AppColors.primaryColor, AppColors.secondaryColor],
+            //   begin: Alignment.centerLeft,
+            //   end: Alignment.centerRight,
+            // ),
             borderRadius: BorderRadius.circular(30),
           ),
           child: ElevatedButton(
