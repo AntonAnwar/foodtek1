@@ -1,3 +1,4 @@
+// to check if its the first launch to the app
 import 'package:shared_preferences/shared_preferences.dart';
 
 Future<void> checkIfFirstLaunch() async {

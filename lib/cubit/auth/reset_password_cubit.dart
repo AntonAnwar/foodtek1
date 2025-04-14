@@ -1,3 +1,5 @@
+// for the OTP screens
+
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import '../../state/auth/reset_password_state.dart';
@@ -10,6 +12,7 @@ class ResetPasswordCubit extends Cubit<ResetPasswordState> {
 
   ResetPasswordCubit() : super(ResetPasswordInitial());
 
+  // for the password validation
   void resetPassword() {
     String password = passwordController.text.trim();
     String confirmPassword = confirmPasswordController.text.trim();
@@ -49,7 +52,7 @@ class ResetPasswordCubit extends Cubit<ResetPasswordState> {
     // Emit success state
     emit(ResetPasswordSuccess());
   }
-
+// to check the if its a valid email
   void checkEmail() {
     String email = emailController.text.trim();
     String p =

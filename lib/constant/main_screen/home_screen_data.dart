@@ -1,4 +1,5 @@
 // home screen data still needs work
+// the data in the home screen ( the food items )
 import '../../model/category.dart';
 
 final List<Category> items = [

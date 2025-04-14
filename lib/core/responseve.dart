@@ -1,3 +1,4 @@
+// for the images
 import 'package:flutter/material.dart';
 
 /// Function to calculate responsive height based on screen dimensions.

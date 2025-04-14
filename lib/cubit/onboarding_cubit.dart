@@ -8,7 +8,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../state/onboarding_cubit_state.dart';
 
 class OnboardingCubit extends Cubit<OnboardingState> {
-  //from chatGPT
   OnboardingCubit() : super(OnboardingInitial());
 
   final int totalPages = 4;
@@ -25,6 +24,7 @@ class OnboardingCubit extends Cubit<OnboardingState> {
     emit(OnboardingCompleted());
   }
 
+// the  Location Permissions
   Future<Position> locationPermission() async {
     LocationPermission permission;
 

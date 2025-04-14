@@ -136,11 +136,11 @@ class _MainPageState extends State<MainPage> {
   List<Widget> _buildScreens() {
     return pages;
   }
-
+// to generate the bottom sheet items
   List<PersistentBottomNavBarItem> _navBarsItems() {
     return List.generate(5, (index) {
       bool isCart = index == 2; // Assuming cart is at index 2
-      return PersistentBottomNavBarItem(
+      return PersistentBottomNavBarItem(// the item for the bottom bar
         icon: isCart
             ? Container(
           padding: EdgeInsets.all(8),
@@ -155,7 +155,7 @@ class _MainPageState extends State<MainPage> {
             color: Colors.white,
           ),
         )
-            : Image.asset(
+            : Image.asset(// the icon
           bottomNavImages[index],
           width: responsiveHeight(context, 24),
           height: responsiveWidth(context, 24),
@@ -178,7 +178,7 @@ class _MainPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) {
-    return PersistentTabView(
+    return PersistentTabView(// the bottom sheet
       navBarHeight: 60,
       backgroundColor: Colors.green.shade100,
       context,
@@ -187,9 +187,6 @@ class _MainPageState extends State<MainPage> {
       items: _navBarsItems(),
 
       navBarStyle: NavBarStyle.style15,
-
-
-      //backgroundColor: Colors.white,
       confineToSafeArea: true,
       handleAndroidBackButtonPress: true,
       resizeToAvoidBottomInset: true,
