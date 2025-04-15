@@ -16,7 +16,7 @@ final List<Category> items = [
     title: "Cheese Sandwich",
     image:
         "assets/images/mainPage/home_page_images/top_rated_list_images/pepperoniPizza.png",
-    description: "lzzhxcskldbvkj'adljjsvh",
+    description: "100 gr chicken + tomato + cheese + Lettuce",
     price: "\$15.00",
     rating: 0,
     id: 2,
@@ -25,7 +25,7 @@ final List<Category> items = [
     title: "Hot dog Sandwich",
     image:
         "assets/images/mainPage/home_page_images/top_rated_list_images/pizzaCheese.png",
-    description: "lhuvhjn,kjbhvgb.akhuj",
+    description: "100 gr chicken + tomato + cheese + Lettuce",
     price: "\$15.00",
     rating: 0,
     id: 3,
@@ -138,7 +138,7 @@ final List<Category> recommendedItems = [
 ];
 
 // Categories
-final List<String> categories = ["All", "Burger", "Pizza", "Sandwich","Sandwich","Sandwich"];
+final List<String> categories = ["All", "Burger", "Pizza","Sandwich"];
 String selectedCategory = "All";
 
 // Unified List of All Items

@@ -56,9 +56,6 @@ class _HomeScreenState extends State<HomeScreen> {
                       "Burger": "🍔",
                       "Pizza": "🍕",
                       "Sandwich": "🌭",
-                      "Sandwich": "🌭",
-                      "Sandwich": "🌭",
-
                     };
 
                     return GestureDetector(
@@ -72,14 +69,14 @@ class _HomeScreenState extends State<HomeScreen> {
                       },
                       child: Container(
                         padding: EdgeInsets.symmetric(
-                          horizontal: 12,
+                          horizontal: 15,
                           vertical: 8,
                         ),
-                        margin: EdgeInsets.symmetric(horizontal: 5),
+                        margin: EdgeInsets.symmetric(horizontal: 8),
                         decoration: BoxDecoration(
-                          border: Border.all(color: Colors.green),
+                          border: Border.all(color: Colors.grey.shade100),
                           color: isSelected ? Colors.green[400] : Colors.white,
-                          borderRadius: BorderRadius.circular(15),
+                          borderRadius: BorderRadius.circular(7),
                         ),
                         child: Row(
                           children: [
@@ -134,43 +131,43 @@ class _HomeScreenState extends State<HomeScreen> {
                           rating: topRatedItems[index].rating,
                           description: topRatedItems[index].description,
                           onTap: () {
-                            PersistentNavBarNavigator.pushNewScreen(
-                              context,
-                              screen:  ItemDetailsScreen(
-                                name: topRatedItems[index].title,
-                                image: topRatedItems[index].image,
-                                price: topRatedItems[index].price,
-                                // Example price list
-                                description:
-                                topRatedItems[index].description,
-                                // Example description list
-                                rating: topRatedItems[index].rating,
-                                id:
-                                topRatedItems[index]
-                                    .id, // Example ratings list
-                              ),
-                              withNavBar: false, // OPTIONAL VALUE. True by default.
-                              pageTransitionAnimation: PageTransitionAnimation.cupertino,
-                            );
-                            // Navigator.push(
+                            // PersistentNavBarNavigator.pushNewScreen(
                             //   context,
-                            //   MaterialPageRoute(
-                            //     builder:
-                            //         (context) => ItemDetailsScreen(
-                            //           name: topRatedItems[index].title,
-                            //           image: topRatedItems[index].image,
-                            //           price: topRatedItems[index].price,
-                            //           // Example price list
-                            //           description:
-                            //               topRatedItems[index].description,
-                            //           // Example description list
-                            //           rating: topRatedItems[index].rating,
-                            //           id:
-                            //               topRatedItems[index]
-                            //                   .id, // Example ratings list
-                            //         ),
+                            //   screen:  ItemDetailsScreen(
+                            //     name: topRatedItems[index].title,
+                            //     image: topRatedItems[index].image,
+                            //     price: topRatedItems[index].price,
+                            //     // Example price list
+                            //     description:
+                            //     topRatedItems[index].description,
+                            //     // Example description list
+                            //     rating: topRatedItems[index].rating,
+                            //     id:
+                            //     topRatedItems[index]
+                            //         .id, // Example ratings list
                             //   ),
+                            //   withNavBar: false, // OPTIONAL VALUE. True by default.
+                            //   pageTransitionAnimation: PageTransitionAnimation.cupertino,
                             // );
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder:
+                                    (context) => ItemDetailsScreen(
+                                      name: topRatedItems[index].title,
+                                      image: topRatedItems[index].image,
+                                      price: topRatedItems[index].price,
+                                      // Example price list
+                                      description:
+                                          topRatedItems[index].description,
+                                      // Example description list
+                                      rating: topRatedItems[index].rating,
+                                      id:
+                                          topRatedItems[index]
+                                              .id, // Example ratings list
+                                    ),
+                              ),
+                            );
                           },
                         );
                       },
@@ -195,43 +192,43 @@ class _HomeScreenState extends State<HomeScreen> {
                         description: '',
                         cObj: '',
                         onTap: () {
-                          PersistentNavBarNavigator.pushNewScreen(
-                            context,
-                            screen:  ItemDetailsScreen(
-                              name: recommendedItems[index].title,
-                              image: recommendedItems[index].image,
-                              price: recommendedItems[index].price,
-                              // Example price list
-                              description:
-                              recommendedItems[index].description,
-                              // Example description list
-                              rating: recommendedItems[index].rating,
-                              id:
-                              recommendedItems[index]
-                                  .id, // Example ratings list
-                            ),
-                            withNavBar: false, // OPTIONAL VALUE. True by default.
-                            pageTransitionAnimation: PageTransitionAnimation.cupertino,
-                          );
-                          // Navigator.push(
+                          // PersistentNavBarNavigator.pushNewScreen(
                           //   context,
-                          //   MaterialPageRoute(
-                          //     builder:
-                          //         (context) => ItemDetailsScreen(
-                          //           name: recommendedItems[index].title,
-                          //           image: recommendedItems[index].image,
-                          //           price: recommendedItems[index].price,
-                          //           // Example price list
-                          //           description:
-                          //               recommendedItems[index].description,
-                          //           // Example description list
-                          //           rating: recommendedItems[index].rating,
-                          //           id:
-                          //               recommendedItems[index]
-                          //                   .id, // Example ratings list
-                          //         ),
+                          //   screen:  ItemDetailsScreen(
+                          //     name: recommendedItems[index].title,
+                          //     image: recommendedItems[index].image,
+                          //     price: recommendedItems[index].price,
+                          //     // Example price list
+                          //     description:
+                          //     recommendedItems[index].description,
+                          //     // Example description list
+                          //     rating: recommendedItems[index].rating,
+                          //     id:
+                          //     recommendedItems[index]
+                          //         .id, // Example ratings list
                           //   ),
+                          //   withNavBar: false, // OPTIONAL VALUE. True by default.
+                          //   pageTransitionAnimation: PageTransitionAnimation.cupertino,
                           // );
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder:
+                                  (context) => ItemDetailsScreen(
+                                    name: recommendedItems[index].title,
+                                    image: recommendedItems[index].image,
+                                    price: recommendedItems[index].price,
+                                    // Example price list
+                                    description:
+                                        recommendedItems[index].description,
+                                    // Example description list
+                                    rating: recommendedItems[index].rating,
+                                    id:
+                                        recommendedItems[index]
+                                            .id, // Example ratings list
+                                  ),
+                            ),
+                          );
                         },
                         image: recommendedItems[index].image,
                       );

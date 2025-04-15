@@ -52,6 +52,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    Map<String, String> fieldErrors = {};
     return BlocProvider(
       create: (_) => LoginCubit(),
       child: BlocConsumer<LoginCubit, LoginState>(
@@ -62,14 +63,16 @@ class _LoginScreenState extends State<LoginScreen> {
               context,
               MaterialPageRoute(builder: (context) => MainPage()),
             );
-          } else if (state is LoginError) {
+          }
+          else if (state is LoginError) {
+            fieldErrors = state.fieldErrors;
             // Show error message using SnackBar
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text(state.message),
-                backgroundColor: Colors.red,
-              ),
-            );
+            // ScaffoldMessenger.of(context).showSnackBar(
+            //   SnackBar(
+            //     content: Text(state.message),
+            //     backgroundColor: Colors.red,
+            //   ),
+            // );
           }
         },
         builder: (context, state) {
@@ -95,7 +98,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         descriptionAlign: TextAlign.center,
                         descriptionword: AppLocalizations.of(context)!.sign_up,
                         descriptionWordOnTap: () {
-                          Navigator.pushReplacement(
+                          Navigator.push(
                             context,
                             MaterialPageRoute(
                               builder: (context) => SignUpScreen(),
@@ -110,6 +113,10 @@ class _LoginScreenState extends State<LoginScreen> {
                             hintText: 'example@email.com',
                             type: TextInputType.emailAddress,
                             obscure: false,
+                            errorText: fieldErrors['email'] ?? '',
+                            onChange: (value) {
+                              context.read<LoginCubit>().validateField(field: 'email', value: value);
+                            },
                           ),
 
                           // Password Field
@@ -117,6 +124,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             controller: _passwordController,
                             label: "Password",
                             hintText: '*******',
+
                             suffixIcon: IconButton(
                               icon: Icon(
                                 _obscurePassword
@@ -132,6 +140,10 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                             type: TextInputType.text,
                             obscure: _obscurePassword,
+                            errorText: fieldErrors['password'] ?? '',
+                            onChange: (value) {
+                              context.read<LoginCubit>().validateField(field: 'password', value: value);
+                            },
                           ),
 
                           // Remember me and Forgot password

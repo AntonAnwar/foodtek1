@@ -10,6 +10,7 @@ class CustomTextFelidWidget extends StatelessWidget {
   final TextInputType type;
   final bool obscure;
   final String? errorText;
+  final ValueChanged onChange;
   FormFieldValidator<String>? validator;
 
   CustomTextFelidWidget({
@@ -21,7 +22,7 @@ class CustomTextFelidWidget extends StatelessWidget {
     required this.type,
     required this.obscure,
     this.errorText,
-    this.validator, 
+    this.validator, required this.onChange,
   });
 
   @override
@@ -37,6 +38,7 @@ class CustomTextFelidWidget extends StatelessWidget {
           controller: controller,
           keyboardType: type,
           obscureText: obscure,
+          onChanged:onChange ,
           decoration: InputDecoration(
             hintText: hintText,
             suffixIcon: suffixIcon ?? SizedBox(),

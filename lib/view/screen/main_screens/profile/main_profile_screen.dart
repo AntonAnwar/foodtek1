@@ -64,33 +64,6 @@ class _MainProfileScreen extends State<MainProfileScreen> {
 
                 ),
               ),
-              // Container(
-              //   width: 120,
-              //   height: 120,
-              //   decoration: BoxDecoration(
-              //     color: AppColors.primaryColor,
-              //     borderRadius: BorderRadius.circular(50),
-              //   ),
-              //   alignment: Alignment.center,
-              //   child:
-              //       image != null
-              //           ? ClipRRect(
-              //             borderRadius: BorderRadius.circular(50),
-              //             child: Image.file(
-              //               File(image!.path),
-              //               width: 120,
-              //               height: 120,
-              //               fit: BoxFit.cover,
-              //             ),
-              //           )
-              //           :  Image.asset(
-              //         "assets/images/profile/img_7.png",
-              //         width: 120,
-              //         height: 120,
-              //         fit: BoxFit.fill,
-              //
-              //       ),
-              // ),
               SizedBox(height: 10),
               Text(
                 "Ahmad Daboor",
@@ -127,20 +100,20 @@ class _MainProfileScreen extends State<MainProfileScreen> {
                           height: responsiveWidth(context, 24),
                         ),
                         onTap: () {
-                          PersistentNavBarNavigator.pushNewScreen(
-                            context,
-                            screen: ProfileView(),
-                            withNavBar: false,
-                            // OPTIONAL VALUE. True by default.
-                            pageTransitionAnimation:
-                                PageTransitionAnimation.cupertino,
-                          );
-                          // Navigator.push(
+                          // PersistentNavBarNavigator.pushNewScreen(
                           //   context,
-                          //   MaterialPageRoute(
-                          //     builder: (context) => ProfileView(),
-                          //   ),
+                          //   screen: ProfileView(),
+                          //   withNavBar: false,
+                          //   // OPTIONAL VALUE. True by default.
+                          //   pageTransitionAnimation:
+                          //       PageTransitionAnimation.cupertino,
                           // );
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ProfileView(),
+                            ),
+                          );
                         },
                       ),
                       ProfileOption(

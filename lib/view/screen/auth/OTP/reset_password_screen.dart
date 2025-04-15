@@ -105,8 +105,15 @@ class ResetPasswordView extends StatelessWidget {
                     backTo: '',
                     login: '',
                     page: '',
-                    descriptionword: '', // this was the problem
-                    descriptionWordOnTap: null, // or this
+                    descriptionword: 'Login',
+                    // this was the problem
+                    descriptionWordOnTap: () {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(builder: (context) => LoginScreen()),
+                      );
+                    },
+                    // or this
                     arrowIcon: true,
                     children: [
                       Column(
@@ -117,7 +124,10 @@ class ResetPasswordView extends StatelessWidget {
                             hintText: '********',
                             type: TextInputType.visiblePassword,
                             obscure: true,
-                            errorText: passwordError,
+                            errorText: state is ResetPasswordError ? state.passwordError : null,
+                            onChange: (value) {
+                              cubit.validateField(field: 'password', value: value);
+                            },
                           ),
                           SizedBox(height: 10),
                           CustomTextFelidWidget(
@@ -126,7 +136,10 @@ class ResetPasswordView extends StatelessWidget {
                             hintText: '********',
                             type: TextInputType.visiblePassword,
                             obscure: true,
-                            errorText: confirmPasswordError,
+                            errorText:state is ResetPasswordError ? state.confirmPasswordError : null,
+                            onChange: (value) {
+                              cubit.validateField(field: 'confirmPassword', value: value);
+                            },
                           ),
                           const SizedBox(height: 24),
                           FoodtekButton(

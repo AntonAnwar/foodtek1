@@ -114,6 +114,7 @@ class ItemScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
+
       padding: const EdgeInsets.only(
         top: 10,
         bottom: 100, // Add bottom padding to avoid bottom bar!
@@ -134,11 +135,11 @@ class ItemScreen extends StatelessWidget {
           clipBehavior: Clip.none,
           children: [
             Card(
-              //color: Colors.white,
+              color: Colors.white,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20),
               ),
-              elevation: 3,
+              //elevation: 3,
               child: Padding(
                 padding: const EdgeInsets.only(top: 45, bottom: 35,left: 10,right: 10),
                 child: Column(

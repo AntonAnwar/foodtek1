@@ -2,6 +2,7 @@
 
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:foodtek/core/responseve.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import '../../../constant/colors.dart';
 
@@ -15,10 +16,9 @@ class PromoBanner extends StatefulWidget {
 class _PromoBannerState extends State<PromoBanner> {
   final List<String> images = [
     // the images being displayed
-    'assets/images/mainPage/home_page_images/recommend_images/sushi.png',
-    'assets/images/mainPage/home_page_images/recommend_images/curry.png',
-    'assets/images/mainPage/home_page_images/recommend_images/sushi.png',
-    'assets/images/mainPage/home_page_images/recommend_images/sushi.png',
+    'assets/images/mainPage/img_1.png',
+    'assets/images/mainPage/img_1.png',
+    'assets/images/mainPage/img_1.png',
   ];
 
   int currentIndex = 0; // Track current index
@@ -33,10 +33,10 @@ class _PromoBannerState extends State<PromoBanner> {
         CarouselSlider(
           carouselController: _carouselController, // Attach the controller
           options: CarouselOptions(
-            height: 180,
+            height: MediaQuery.of(context).size.height * 0.2,
             autoPlay: true,
             enlargeCenterPage: true,
-            viewportFraction: 0.9,
+            viewportFraction: 0.94,
             onPageChanged: (index, reason) {
               setState(() {
                 currentIndex = index; // Update the selected index
@@ -50,10 +50,9 @@ class _PromoBannerState extends State<PromoBanner> {
                   builder: (BuildContext context) {
                     return Container(
                       width:
-                          MediaQuery.of(context).size.width *
-                          0.9, // Adjust width
+                          MediaQuery.of(context).size.width * .95, // Adjust width
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
+                        borderRadius: BorderRadius.circular(10),
                         color: Colors.white,
                         boxShadow: [
                           BoxShadow(
@@ -65,52 +64,121 @@ class _PromoBannerState extends State<PromoBanner> {
                       ),
                       child: Row(
                         children: [
-                          // Text Container on the right
                           Expanded(
-                            child: Container(
-                              padding: const EdgeInsets.all(5),
-                              decoration: BoxDecoration(
-                                color: AppColors.primaryColor.withOpacity(.9),
-                                borderRadius: BorderRadius.horizontal(
-                                  left: Radius.circular(15),
+                            child: Stack(
+                              children: [
+                                // Promo text container (same as before)
+                                Container(
+                                  padding:  EdgeInsets.only(left: 7,top: 26),
+                                  decoration: BoxDecoration(
+                                    color: AppColors.primaryColor.withOpacity(.9),
+                                    borderRadius: const BorderRadius.horizontal(
+                                      left: Radius.circular(10),
+                                    ),
+                                  ),
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: const [
+                                      Text(
+                                        "Experience our delicious new dish",
+                                        textAlign: TextAlign.start,
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      ),
+                                      SizedBox(height: 5),
+                                      Text(
+                                        "30% OFF",
+                                        textAlign: TextAlign.start,
+
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 32,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                              ),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  const Text(
-                                    "Experience our delicious new dish",
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w500,
-                                    ),
+
+                                // Top left decorative arc
+                                Positioned(
+                                  top: -16,
+                                  right: 15,
+                                  child: Image.asset(
+                                    'assets/images/mainPage/img_2.png', // replace with actual path
+                                    width: responsiveWidth(context, 55),
+                                    height: responsiveHeight(context, 55),
                                   ),
-                                  const SizedBox(height: 5),
-                                  const Text(
-                                    "30% OFF",
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 24,
-                                      fontWeight: FontWeight.bold,
-                                    ),
+                                ),
+
+                                // Bottom left decorative arc
+                                Positioned(
+                                  bottom: -15,
+                                  left: 0,
+                                  child: Image.asset(
+                                    'assets/images/mainPage/img_3.png', // replace with actual path
+                                    width: responsiveWidth(context, 46),
+                                    height: responsiveHeight(context, 46),
                                   ),
-                                ],
-                              ),
+                                ),
+                              ],
                             ),
                           ),
+
+                          // Text Container on the right
+                          // Expanded(
+                          //   child: Container(
+                          //     padding: const EdgeInsets.all(15),
+                          //     decoration: BoxDecoration(
+                          //       color: AppColors.primaryColor.withOpacity(.9),
+                          //       borderRadius: BorderRadius.horizontal(
+                          //         left: Radius.circular(10),
+                          //       ),
+                          //     ),
+                          //     child: Column(
+                          //       crossAxisAlignment: CrossAxisAlignment.center,
+                          //       mainAxisAlignment: MainAxisAlignment.center,
+                          //       children: [
+                          //         const Text(
+                          //           "Experience our delicious new dish",
+                          //           textAlign: TextAlign.center,
+                          //           style: TextStyle(
+                          //
+                          //             color: Colors.white,
+                          //             fontSize: 12,
+                          //             fontWeight: FontWeight.w500,
+                          //           ),
+                          //         ),
+                          //         const SizedBox(height: 5),
+                          //         const Text(
+                          //           "30% OFF",
+                          //           style: TextStyle(
+                          //             color: Colors.white,
+                          //             fontSize: 20,
+                          //             fontWeight: FontWeight.bold,
+                          //           ),
+                          //         ),
+                          //       ],
+                          //     ),
+                          //   ),
+                          // ),
                           // Image on the left
                           ClipRRect(
                             borderRadius: BorderRadius.horizontal(
-                              right: Radius.circular(15),
+                              right: Radius.circular(10),
                             ),
                             child: Image.asset(
                               image,
-                              width:
-                                  MediaQuery.of(context).size.width *
-                                  0.5, // Half screen width
-                              height: 180,
+                              width: responsiveWidth(context,211),
+                                  // MediaQuery.of(context).size.width *
+                                  // 0.5, // Half screen width
+                              height: responsiveHeight(context, 200),
+                              // MediaQuery.of(context).size.height *
+                              //     0.2,
                               fit: BoxFit.cover,
                             ),
                           ),

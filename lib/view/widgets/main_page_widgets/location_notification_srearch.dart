@@ -140,16 +140,16 @@ class _LocationNotificationSrearchState
               ),
               right: IconButton(
                 onPressed: () {
-                  PersistentNavBarNavigator.pushNewScreen(
-                    context,
-                    screen:  FilterScreen(),
-                    withNavBar: false, // OPTIONAL VALUE. True by default.
-                    pageTransitionAnimation: PageTransitionAnimation.cupertino,
-                  );
-                  // Navigator.push(
+                  // PersistentNavBarNavigator.pushNewScreen(
                   //   context,
-                  //   MaterialPageRoute(builder: (context) => FilterScreen()),
+                  //   screen:  FilterScreen(),
+                  //   withNavBar: false, // OPTIONAL VALUE. True by default.
+                  //   pageTransitionAnimation: PageTransitionAnimation.cupertino,
                   // );
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => FilterScreen()),
+                  );
                 },
                 icon: Image.asset(
                   'assets/images/mainPage/filterIcon.png',

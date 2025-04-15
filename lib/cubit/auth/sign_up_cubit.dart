@@ -134,7 +134,7 @@ class SignUpCubit extends Cubit<SignUpState> {
           fieldErrors['password'] = "Please enter a password";
         } else if (!_isStrongPassword(value)) {
           fieldErrors['password'] =
-              "Password must be at least 8 characters with uppercase, lowercase, numbers, and special characters";
+              "Password must be at least 8 characters\n with uppercase, lowercase, numbers,\n and special characters";
         } else {
           fieldErrors['password'] = '';
         }
@@ -207,7 +207,7 @@ class SignUpCubit extends Cubit<SignUpState> {
 
   bool _isValidPhone(String phone) {
     // تحقق بسيط من رقم الهاتف (يمكن تخصيصه حسب تنسيق الأرقام في بلدك)
-    String pattern = r'^\d{10,}$';
+    String pattern = r'^\+?\d{9,}$';
     RegExp regExp = RegExp(pattern);
     return regExp.hasMatch(phone);
   }

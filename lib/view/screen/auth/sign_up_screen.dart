@@ -9,6 +9,8 @@ import 'package:foodtek/view/widgets/auth/OTP/reusable_scaffold.dart';
 import 'package:foodtek/view/widgets/auth/custom_foodtek_logo_widget.dart';
 import 'package:foodtek/view/widgets/auth/custom_text_felid_widget.dart';
 import 'package:foodtek/view/widgets/auth/foodtek_button.dart';
+import 'package:date_format_field/date_format_field.dart';
+import 'package:intl_phone_field/intl_phone_field.dart';
 
 class SignUpScreen extends StatelessWidget {
   final GlobalKey<FormState> formkey = GlobalKey();
@@ -108,6 +110,12 @@ class SignUpScreen extends StatelessWidget {
                               return null;
                             },
                             errorText: fieldErrors['name'] ?? "",
+                            onChange: (value) {
+                              signUpCubit.validateField(
+                                field: 'name',
+                                value: value ?? "",
+                              );
+                            },
                           ),
 
                           // حقل البريد الإلكتروني
@@ -124,41 +132,147 @@ class SignUpScreen extends StatelessWidget {
                               );
                               return null;
                             },
+
                             errorText: fieldErrors['email'] ?? "",
+                            onChange: (value) {
+                              signUpCubit.validateField(
+                                field: 'email',
+                                value: value ?? "",
+                              );
+                            },
                           ),
 
                           // حقل تاريخ الميلاد
-                          CustomTextFelidWidget(
-                            controller: dateController,
-                            label: "Birth of date",
-                            hintText: "DD/MM/YYYY",
-                            type: TextInputType.datetime,
-                            obscure: false,
-                            validator: (value) {
-                              signUpCubit.validateField(
-                                field: 'date',
-                                value: value ?? "",
-                              );
-                              return null;
-                            },
-                            errorText: fieldErrors['date'] ?? "",
+                          // CustomTextFelidWidget(
+                          //   controller: dateController,
+                          //   label: "Birth of date",
+                          //   hintText: "DD/MM/YYYY",
+                          //   type: TextInputType.datetime,
+                          //   obscure: false,
+                          //   validator: (value) {
+                          //     signUpCubit.validateField(
+                          //       field: 'date',
+                          //       value: value ?? "",
+                          //     );
+                          //     return null;
+                          //   },
+                          //   errorText: fieldErrors['date'] ?? "",
+                          // ),
+                          Container(
+                            // margin: EdgeInsets.symmetric(horizontal: 10),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text("Date of Birth"),
+                                SizedBox(height: 8),
+                                DateFormatField(
+                                  controller: dateController,
+                                  decoration: InputDecoration(
+                                    filled: true,
+                                    fillColor: Colors.grey[100],
+                                    hintText: '18/03/2024',
+                                    errorText: fieldErrors['date'],
+                                    // 🛑 Show error if exists
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(8),
+                                      borderSide: BorderSide.none,
+                                    ),
+                                    enabledBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(8),
+                                      borderSide: BorderSide(
+                                        color: Colors.grey[300]!,
+                                        width: 1,
+                                      ),
+                                    ),
+                                    focusedBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(8),
+                                      borderSide: BorderSide(
+                                        color: Color(0xFF38B443),
+                                        width: 1,
+                                      ),
+                                    ),
+                                  ),
+                                  type: DateFormatType.type1,
+                                  onComplete: (date) {
+                                    dateController.text =
+                                        "${date?.day.toString().padLeft(2, '0')}/"
+                                        "${date?.month.toString().padLeft(2, '0')}/"
+                                        "${date?.year}";
+                                    signUpCubit.validateField(
+                                      field: 'date',
+                                      value: dateController.text,
+                                    );
+                                  },
+                                ),
+                              ],
+                            ),
                           ),
 
+                          SizedBox(height: 20),
+
                           // حقل رقم الهاتف
-                          CustomTextFelidWidget(
-                            controller: phoneController,
-                            label: "Phone",
-                            hintText: "0770000000",
-                            type: TextInputType.number,
-                            obscure: false,
-                            validator: (value) {
-                              signUpCubit.validateField(
-                                field: 'phone',
-                                value: value ?? "",
-                              );
-                              return null;
-                            },
-                            errorText: fieldErrors['phone'] ?? "",
+                          // CustomTextFelidWidget(
+                          //   controller: phoneController,
+                          //   label: "Phone",
+                          //   hintText: "0770000000",
+                          //   type: TextInputType.number,
+                          //   obscure: false,
+                          //   validator: (value) {
+                          //     signUpCubit.validateField(
+                          //       field: 'phone',
+                          //       value: value ?? "",
+                          //     );
+                          //     return null;
+                          //   },
+                          //   errorText: fieldErrors['phone'] ?? "",
+                          // ),
+                          Container(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+
+                              children: [
+                                Text("Phone Number"),
+                                SizedBox(height: 8),
+                                IntlPhoneField(
+                                  controller: phoneController,
+                                  decoration: InputDecoration(
+                                    filled: true,
+                                    fillColor: Colors.grey[100],
+                                    labelText: 'Phone Number',
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(8),
+                                      borderSide: BorderSide.none,
+                                    ),
+                                    enabledBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(8),
+                                      borderSide: BorderSide(
+                                        color: Colors.grey[300]!,
+                                        width: 1,
+                                      ),
+                                    ),
+                                    focusedBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(8),
+                                      borderSide: BorderSide(
+                                        color: Color(0xFF38B443),
+                                        width: 1,
+                                      ),
+                                    ),
+                                    errorText: fieldErrors['phone'],
+                                  ),
+                                  initialCountryCode: 'JO',
+                                  // Or whatever default you'd like
+                                  onChanged: (phone) {
+                                    signUpCubit.validateField(
+                                      field: 'phone',
+                                      value: phone.completeNumber,
+                                    );
+                                  },
+                                  onCountryChanged: (country) {
+                                    // Optional: do something when the country changes
+                                  },
+                                ),
+                              ],
+                            ),
                           ),
 
                           // حقل كلمة المرور
@@ -187,6 +301,12 @@ class SignUpScreen extends StatelessWidget {
                               return null;
                             },
                             errorText: fieldErrors['password'] ?? "",
+                            onChange: (value) {
+                              signUpCubit.validateField(
+                                field: 'password',
+                                value: value ?? "",
+                              );
+                            },
                           ),
                         ],
                       ),

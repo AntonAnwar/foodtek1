@@ -50,9 +50,11 @@ class OrderDetailsPage extends StatelessWidget {
         'icon': "assets/images/mainPage/location/img_5.png",
       },
     ];
-    int currentStep = 3; // change this to reflect order status
+    int currentStep = 2; // change this to reflect order status
 
     return Scaffold(
+      backgroundColor: Colors.white,
+
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
@@ -124,7 +126,8 @@ class OrderDetailsPage extends StatelessWidget {
                       size: 40,
                       color: index <= currentStep ? Colors.green : Colors.grey,
                       child: Image.asset(
-                        color: index <= currentStep ? Colors.white : Colors.white,
+                        color:
+                            index <= currentStep ? Colors.white : Colors.white,
                         steps[index]['icon'] as String,
                         fit: BoxFit.contain,
                         width: responsiveWidth(context, 18),
@@ -175,8 +178,7 @@ class OrderDetailsPage extends StatelessWidget {
                   ),
                   const Spacer(),
                   IconButton(
-                    onPressed: () {
-                    },
+                    onPressed: () {},
                     icon: Image.asset(
                       "assets/images/mainPage/location/img_6.png",
                       fit: BoxFit.cover,
@@ -194,6 +196,10 @@ class OrderDetailsPage extends StatelessWidget {
                         pageTransitionAnimation:
                             PageTransitionAnimation.cupertino,
                       );
+                      // Navigator.push(
+                      //   context,
+                      //   MaterialPageRoute(builder: (context) => ChatPage()),
+                      // );
                     },
                     icon: Image.asset(
                       "assets/images/mainPage/location/img_7.png",
@@ -223,12 +229,18 @@ class OrderDetailsPage extends StatelessWidget {
                 child: FoodtekButton(
                   text: "Live Track",
                   onPressed: () {
-                    PersistentNavBarNavigator.pushNewScreen(
+                    // PersistentNavBarNavigator.pushNewScreen(
+                    //   context,
+                    //   screen: const DeliveryTrackingScreen(),
+                    //   withNavBar: false,
+                    //   pageTransitionAnimation:
+                    //       PageTransitionAnimation.cupertino,
+                    // );
+                    Navigator.push(
                       context,
-                      screen: const DeliveryTrackingScreen(),
-                      withNavBar: false,
-                      pageTransitionAnimation:
-                          PageTransitionAnimation.cupertino,
+                      MaterialPageRoute(
+                        builder: (context) => DeliveryTrackingScreen(),
+                      ),
                     );
                   },
                 ),

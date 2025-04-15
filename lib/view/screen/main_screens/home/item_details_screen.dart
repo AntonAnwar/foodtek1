@@ -47,6 +47,7 @@ class _ItemDetailsScreenState extends State<ItemDetailsScreen> {
   Widget build(BuildContext context) {
 
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -62,7 +63,7 @@ class _ItemDetailsScreenState extends State<ItemDetailsScreen> {
               width: MediaQuery.of(context).size.width,
               height: 250,
               decoration: BoxDecoration(
-                border: Border.all(color: AppColors.primaryColor),
+                border: Border.all(color:Colors.grey.shade100),
                 borderRadius: BorderRadius.all(Radius.circular(15)),
               ),
               child: Image.asset(widget.image, fit: BoxFit.contain),
@@ -189,7 +190,7 @@ class _ItemDetailsScreenState extends State<ItemDetailsScreen> {
                                 onChanged: (value) {
                                   setState(() {
                                     spicy = value;
-                                    qty = value.round();
+                                    //qty = value.round();
                                   });
                                 },
                               ),
@@ -203,25 +204,26 @@ class _ItemDetailsScreenState extends State<ItemDetailsScreen> {
 
                   // Quantity Selector
                   Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text("Quantity"),
+                      const Text("Quantity",textAlign: TextAlign.left,),
                       Row(
                         children: [
                           IconButton(
                             onPressed: () {
-                              if (qty > minSpicy.toInt()) {
+                              // if (qty > minSpicy.toInt()) {
                                 setState(() {
                                   qty--;
-                                  spicy = qty.toDouble();
+                                  //spicy = qty.toDouble();
                                  // spicy -= (maxSpicy - minSpicy) / 9;
                                 });
-                              }
+                              // }
                             },
                             icon: const Icon(Icons.remove),
                             color: Colors.green,
                             style: OutlinedButton.styleFrom(
                               side: const BorderSide(color: Colors.green),
-                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                             ),
                           ),
                           SizedBox(width: 5,),
@@ -232,18 +234,18 @@ class _ItemDetailsScreenState extends State<ItemDetailsScreen> {
                           SizedBox(width: 5,),
                           IconButton(
                             onPressed: () {
-                              if (qty < maxSpicy.toInt()) {
+                              // if (qty < maxSpicy.toInt()) {
                                 setState(() {
                                   qty++;
-                                  spicy = qty.toDouble();
+                                 // spicy = qty.toDouble();
                                   //spicy += (maxSpicy - minSpicy) / 9;
                                 });
-                              }
+                              // }
                             },
                             icon: const Icon(Icons.add, color: Colors.white),
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.green,
-                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                             ),
                           ),
                         ],

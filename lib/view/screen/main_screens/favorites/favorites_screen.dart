@@ -14,25 +14,32 @@ class FavoritesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           LocationNotificationSrearch(showSearchBar: true),
           const SizedBox(height: 10),
-
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+            child: Text(
+              "Favorites",
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
+          ),
           Expanded(
             child: BlocBuilder<FavoritesCubit, FavoritesState>(
               builder: (context, state) {
                 if (state is FavoritesLoaded) {
-
                   if (state.favorites.isEmpty) {
                     return Center(child: Text("No favorites yet!"));
                   }
                   return GridView.builder(
-                    padding:const EdgeInsets.only(
+                    padding: const EdgeInsets.only(
                       top: 30,
                       bottom: 60, // Add bottom padding to avoid bottom bar!
-                      left: 10,
-                      right: 10,
+                      left: 20,
+                      right: 20,
                     ),
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
@@ -49,11 +56,11 @@ class FavoritesScreen extends StatelessWidget {
                         clipBehavior: Clip.none,
                         children: [
                           Card(
-                            //color: Colors.white,
+                            color: Colors.white,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(20),
                             ),
-                            elevation: 3,
+                            //elevation: 3,
                             child: Padding(
                               padding: const EdgeInsets.only(
                                 top: 45,
@@ -212,33 +219,33 @@ class FavoritesScreen extends StatelessWidget {
                               height: 40,
                               child: ElevatedButton(
                                 onPressed: () {
-                                  PersistentNavBarNavigator.pushNewScreen(
-                                    context,
-                                    screen:  ItemDetailsScreen(
-                                      name: item.name,
-                                      image: item.image,
-                                      price: item.price,
-                                      description: item.description,
-                                      rating: item.rating,
-                                      id: item.id,
-                                    ),
-                                    withNavBar: false, // OPTIONAL VALUE. True by default.
-                                    pageTransitionAnimation: PageTransitionAnimation.cupertino,
-                                  );
-                                  // Navigator.push(
+                                  // PersistentNavBarNavigator.pushNewScreen(
                                   //   context,
-                                  //   MaterialPageRoute(
-                                  //     builder:
-                                  //         (context) => ItemDetailsScreen(
-                                  //           name: item.name,
-                                  //           image: item.image,
-                                  //           price: item.price,
-                                  //           description: item.description,
-                                  //           rating: item.rating,
-                                  //           id: item.id,
-                                  //         ),
+                                  //   screen:  ItemDetailsScreen(
+                                  //     name: item.name,
+                                  //     image: item.image,
+                                  //     price: item.price,
+                                  //     description: item.description,
+                                  //     rating: item.rating,
+                                  //     id: item.id,
                                   //   ),
+                                  //   withNavBar: false, // OPTIONAL VALUE. True by default.
+                                  //   pageTransitionAnimation: PageTransitionAnimation.cupertino,
                                   // );
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder:
+                                          (context) => ItemDetailsScreen(
+                                            name: item.name,
+                                            image: item.image,
+                                            price: item.price,
+                                            description: item.description,
+                                            rating: item.rating,
+                                            id: item.id,
+                                          ),
+                                    ),
+                                  );
                                 },
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor: Colors.green,
@@ -257,7 +264,6 @@ class FavoritesScreen extends StatelessWidget {
                       );
                     },
                   );
-
                 }
                 return Center(
                   child: CircularProgressIndicator(),
@@ -266,7 +272,6 @@ class FavoritesScreen extends StatelessWidget {
             ),
           ),
         ],
-
       ),
     );
   }

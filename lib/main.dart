@@ -4,6 +4,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:foodtek/constant/colors.dart';
 import 'package:foodtek/cubit/auth/login_cubit.dart';
 import 'package:foodtek/cubit/auth/sign_up_cubit.dart';
+import 'package:foodtek/view/screen/Splash_Screen.dart';
 import 'package:foodtek/view/screen/onBoarding_screen.dart';
 import 'cubit/auth/reset_password_cubit.dart';
 import 'cubit/lang_cubit.dart';
@@ -52,11 +53,11 @@ class MyApp extends StatelessWidget {
             theme: ThemeData(
               fontFamily: 'Inter',
               colorScheme: ColorScheme.fromSeed(
-                seedColor: Colors.white,
+                seedColor:AppColors.primaryColor,
               ),
             ),
             //home: FilterScreen(),
-            home: OnboardingScreen(),
+            home: SplashScreen(),
             //mainSplashScreen()_screens: ForgotPwScreen(),
           );
         },

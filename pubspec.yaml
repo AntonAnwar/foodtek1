@@ -53,6 +53,9 @@ dependencies:
     sdk: flutter
   intl: any
   timelines_plus: ^1.0.6
+  date_format_field: ^0.1.0
+  intl_phone_field: ^3.2.0
+
 
 
 

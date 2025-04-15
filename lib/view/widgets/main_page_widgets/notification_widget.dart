@@ -19,6 +19,7 @@ class NotificationWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      color:  Color.fromRGBO(219, 244, 209, 0.5),
       height: MediaQuery.of(context).size.height * 0.65, // Almost full-screen
       padding: EdgeInsets.all(16),
       child: DefaultTabController(
@@ -70,29 +71,27 @@ class NotificationWidget extends StatelessWidget {
   Widget _buildNotificationList() {
     return ListView(
       children: [
-        _buildNotificationItem("Delayed Order", "Your order is running late."),
+        _buildNotificationItem("Delayed Order :", "We’re sorry! Your order is running late. New ETA: 10:30 PM. Thanks for your patience!"),
         _buildNotificationItem(
           "Promotional Offer",
-          "Get 20% off your next order.",
+          "Craving something delicious? 🍔 Get 20% off on your next order. Use code: YUMMY20",
         ),
-        _buildNotificationItem("Out for Delivery", "Your order is on the way!"),
+        _buildNotificationItem("Out for Delivery", "Your order is on the way! 🚗 Estimated arrival: 15 mins. Stay hungry!"),
         _buildNotificationItem(
           "Order Confirmation",
-          "Your order has been placed.",
+          "Your order has been placed! 🍔 We're preparing it now. Track your order live",
         ),
-        _buildNotificationItem("Delivered", "Your order has been delivered."),
+        _buildNotificationItem("Delivered", "Enjoy your meal! 🍕 Your order has been delivered. Rate your experience!"),
       ],
     );
   }
 
   Widget _buildNotificationItem(String title, String subtitle) {
-    return Padding(
-      padding: EdgeInsets.symmetric(vertical: 8),
-      child: ListTile(
-        onTap: () {},
-        title: Text(title, style: TextStyle(fontWeight: FontWeight.bold)),
-        subtitle: Text(subtitle),
-      ),
+    return ListTile(
+      //tileColor: Color.fromRGBO(219, 244, 209, 0.5),
+      onTap: () {},
+      title: Text(title, style: TextStyle(fontWeight: FontWeight.bold)),
+      subtitle: Text(subtitle),
     );
   }
 }

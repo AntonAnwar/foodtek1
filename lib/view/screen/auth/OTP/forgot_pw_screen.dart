@@ -49,6 +49,9 @@ class ForgotPwScreen extends StatelessWidget {
                       type: TextInputType.emailAddress,
                       obscure: false,
                       errorText: emailError,
+                      onChange: (value) {
+                        cubit.validateField(field: 'email', value: value);
+                      },
                     ),
                     const SizedBox(height: 24),
                     FoodtekButton(

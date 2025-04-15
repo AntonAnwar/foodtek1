@@ -7,6 +7,8 @@ class LoginLoading extends LoginState {}
 class LoginSuccess extends LoginState {}
 
 class LoginError extends LoginState {
-  final String message;
-  LoginError(this.message);
+  final String generalError;
+  final Map<String, String> fieldErrors;
+
+  LoginError(this.generalError, {this.fieldErrors = const {}});
 }

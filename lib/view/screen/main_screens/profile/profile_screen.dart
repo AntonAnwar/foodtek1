@@ -60,23 +60,23 @@ class _ProfileViewState extends State<ProfileView> {
                 },
                 child: CircleAvatar(
                   radius: 60,
-                  child:image != null
-                      ? ClipRRect(
-                    borderRadius: BorderRadius.circular(50),
-                    child: Image.file(
-                      File(image!.path),
-                      width: 120,
-                      height: 120,
-                      fit: BoxFit.cover,
-                    ),
-                  )
-                      :  Image.asset(
-                    "assets/images/profile/img_7.png",
-                    width: 120,
-                    height: 120,
-                    fit: BoxFit.fill,
-
-                  ),
+                  child:
+                      image != null
+                          ? ClipRRect(
+                            borderRadius: BorderRadius.circular(50),
+                            child: Image.file(
+                              File(image!.path),
+                              width: 120,
+                              height: 120,
+                              fit: BoxFit.cover,
+                            ),
+                          )
+                          : Image.asset(
+                            "assets/images/profile/img_7.png",
+                            width: 120,
+                            height: 120,
+                            fit: BoxFit.fill,
+                          ),
                 ),
               ),
               SizedBox(height: 10),
@@ -118,6 +118,7 @@ class _ProfileViewState extends State<ProfileView> {
                           controller: txtName,
                           type: TextInputType.name,
                           obscure: false,
+                          onChange: (value) {},
                         ),
                       ),
                       Padding(
@@ -131,6 +132,7 @@ class _ProfileViewState extends State<ProfileView> {
                           type: TextInputType.emailAddress,
                           hintText: "Enter Email",
                           controller: txtEmail,
+                          onChange: (value) {},
                         ),
                       ),
                       Padding(
@@ -145,6 +147,7 @@ class _ProfileViewState extends State<ProfileView> {
 
                           hintText: "Enter Mobile No",
                           controller: txtMobile,
+                          onChange: (value) {},
                         ),
                       ),
                       Padding(
@@ -160,6 +163,7 @@ class _ProfileViewState extends State<ProfileView> {
                           hintText: "* * * * * *",
 
                           controller: txtPassword,
+                          onChange: (value) {},
                         ),
                       ),
                       Padding(
@@ -171,10 +175,9 @@ class _ProfileViewState extends State<ProfileView> {
                           type: TextInputType.text,
                           label: "Address",
                           obscure: false,
-
                           hintText: "Enter Address",
-
                           controller: txtAddress,
+                          onChange: (value) {},
                         ),
                       ),
                     ],
