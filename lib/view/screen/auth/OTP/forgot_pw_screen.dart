@@ -9,6 +9,7 @@ import '../../../widgets/auth/custom_foodtek_logo_widget.dart';
 import '../../../widgets/auth/OTP/reusable_scaffold.dart';
 import '../../../widgets/auth/custom_text_felid_widget.dart';
 import '../../../widgets/auth/foodtek_button.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ForgotPwScreen extends StatelessWidget {
   const ForgotPwScreen({super.key});
@@ -31,12 +32,12 @@ class ForgotPwScreen extends StatelessWidget {
                 return CustomAuthCard(
                   // a custom container for the forgot and reset screens
                   arrowIcon: true,
-                  backTo: 'back to ',
-                  login: "login ",
-                  page: "page",
-                  title: "Reset Password",
+                  backTo: AppLocalizations.of(context)!.back_to,
+                  login: AppLocalizations.of(context)!.login,
+                  page: AppLocalizations.of(context)!.page,
+                  title: AppLocalizations.of(context)!.rest_password,
                   description:
-                      "Enter your email or phone number and we'll\n send you a link to reset your password.",
+                  AppLocalizations.of(context)!.enter_your_email,
                   descriptionword: "",
 
                   titleAlign: TextAlign.center,
@@ -44,7 +45,7 @@ class ForgotPwScreen extends StatelessWidget {
                   children: [
                     CustomTextFelidWidget(
                       controller: cubit.emailController,
-                      label: "Email",
+                      label: AppLocalizations.of(context)!.email,
                       hintText: "example@email.com",
                       type: TextInputType.emailAddress,
                       obscure: false,
@@ -55,7 +56,7 @@ class ForgotPwScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 24),
                     FoodtekButton(
-                      text: "Send",
+                      text: AppLocalizations.of(context)!.send,
                       onPressed: () {
                         cubit.checkEmail();
                         if (cubit.state is EmailSuccess) {

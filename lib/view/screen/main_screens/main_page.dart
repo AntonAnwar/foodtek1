@@ -28,51 +28,99 @@ class _MainPageState extends State<MainPage> {
   }
 
   // to generate the bottom sheet items
-  List<PersistentBottomNavBarItem> _navBarsItems() {
+  // List<PersistentBottomNavBarItem> _navBarsItems() {
+  //   return List.generate(5, (index) {
+  //     bool isCart = index == 2; // Assuming cart is at index 2
+  //     return PersistentBottomNavBarItem(
+  //       // the item for the bottom bar
+  //       icon: Column(
+  //         mainAxisAlignment: MainAxisAlignment.center,
+  //         crossAxisAlignment: CrossAxisAlignment.center,
+  //         children: [
+  //           isCart
+  //               ? Center(
+  //                 child: Image.asset(
+  //                   bottomNavImages[index],
+  //                   width: responsiveWidth(context, 30),
+  //                   height: responsiveHeight(context, 30),
+  //                   color: Colors.white,
+  //                 ),
+  //               )
+  //               : Image.asset(
+  //                 // the icon
+  //                 bottomNavImages[index],
+  //                 width: responsiveWidth(context, 24),
+  //                 height: responsiveHeight(context, 24),
+  //                 color:
+  //                     index == _controller.index
+  //                         ? AppColors.primaryColor
+  //                         : Colors.grey,
+  //               ),
+  //           Visibility(
+  //             visible: !isCart,
+  //             child: Text(
+  //               isCart ? '' : bottomNavLabels[index],
+  //               style: TextStyle(
+  //                 fontSize: 12,
+  //                 decoration: TextDecoration.none,
+  //                 color:
+  //                     index == _controller.index
+  //                         ? AppColors.primaryColor
+  //                         : Colors.grey,
+  //               ),
+  //             ),
+  //           ),
+  //         ],
+  //       ),
+  //
+  //       activeColorPrimary: AppColors.primaryColor,
+  //       inactiveColorPrimary: Colors.grey,
+  //     );
+  //   });
+  // }
+  List<PersistentBottomNavBarItem> _navBarsItems(BuildContext context) {
+    final localizedLabels = getBottomNavLabels(context); // ← grab localized text
+
     return List.generate(5, (index) {
-      bool isCart = index == 2; // Assuming cart is at index 2
+      bool isCart = index == 2;
+
       return PersistentBottomNavBarItem(
-        // the item for the bottom bar
         icon: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             isCart
                 ? Center(
-                  child: Image.asset(
-                    bottomNavImages[index],
-                    width: responsiveWidth(context, 30),
-                    height: responsiveHeight(context, 30),
-                    color: Colors.white,
-                  ),
-                )
+              child: Image.asset(
+                bottomNavImages[index],
+                width: responsiveWidth(context, 30),
+                height: responsiveHeight(context, 30),
+                color: Colors.white,
+              ),
+            )
                 : Image.asset(
-                  // the icon
-                  bottomNavImages[index],
-                  width: responsiveWidth(context, 24),
-                  height: responsiveHeight(context, 24),
-                  color:
-                      index == _controller.index
-                          ? AppColors.primaryColor
-                          : Colors.grey,
-                ),
+              bottomNavImages[index],
+              width: responsiveWidth(context, 24),
+              height: responsiveHeight(context, 24),
+              color: index == _controller.index
+                  ? AppColors.primaryColor
+                  : Colors.grey,
+            ),
             Visibility(
               visible: !isCart,
               child: Text(
-                isCart ? '' : bottomNavLabels[index],
+                localizedLabels[index], // ← localized label here
                 style: TextStyle(
                   fontSize: 12,
                   decoration: TextDecoration.none,
-                  color:
-                      index == _controller.index
-                          ? AppColors.primaryColor
-                          : Colors.grey,
+                  color: index == _controller.index
+                      ? AppColors.primaryColor
+                      : Colors.grey,
                 ),
               ),
             ),
           ],
         ),
-
         activeColorPrimary: AppColors.primaryColor,
         inactiveColorPrimary: Colors.grey,
       );
@@ -88,7 +136,7 @@ class _MainPageState extends State<MainPage> {
       context,
       controller: _controller,
       screens: _buildScreens(),
-      items: _navBarsItems(),
+      items: _navBarsItems(context),
 
       navBarStyle: NavBarStyle.style15,
       confineToSafeArea: true,

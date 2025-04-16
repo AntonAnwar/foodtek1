@@ -8,7 +8,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../../constant/colors.dart';
 import '../../screen/main_screens/home/filter_screen.dart';
 import 'notification_widget.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 class LocationNotificationSrearch extends StatefulWidget {
   final bool showSearchBar; // to show the SearchBar where needed
 
@@ -131,7 +131,7 @@ class _LocationNotificationSrearchState
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 12),
             child: RoundTextfield(
-              hintText: "Search menu, restaurant or etc",
+              hintText: AppLocalizations.of(context)!.search,
               controller: txtSearch,
               left: Container(
                 alignment: Alignment.center,

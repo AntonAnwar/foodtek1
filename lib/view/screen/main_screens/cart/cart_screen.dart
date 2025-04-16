@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:foodtek/model/item.dart';
 import 'package:foodtek/view/screen/main_screens/cart/checkout/location_screeen.dart';
 import 'package:foodtek/view/widgets/cart/cart_item_widget.dart';
 import 'package:foodtek/view/widgets/cart/check_out_widget.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
+
+import '../../../../model/items.dart';
 
 class CartScreen extends StatefulWidget {
   const CartScreen({super.key});

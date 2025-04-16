@@ -105,7 +105,7 @@ import '../../../../cubit/main_cubit/favorites_cubit.dart';
 import '../../../../model/category.dart';
 import '../../../../core/responseve.dart';
 import 'item_details_screen.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 class ItemScreen extends StatelessWidget {
   final List<Category> categoryItems;
 
@@ -263,8 +263,8 @@ class ItemScreen extends StatelessWidget {
                       borderRadius: BorderRadius.circular(20),
                     ),
                   ),
-                  child: const Text(
-                    "Order Now",
+                  child:  Text(
+                    AppLocalizations.of(context)!.order_now,
                     style: TextStyle(color: Colors.white),
                   ),
                 ),

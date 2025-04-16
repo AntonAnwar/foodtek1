@@ -11,6 +11,7 @@ import '../../../../state/auth/reset_password_state.dart';
 import '../../../widgets/auth/custom_foodtek_logo_widget.dart';
 import '../../../widgets/auth/custom_text_felid_widget.dart';
 import '../../../widgets/auth/foodtek_button.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ResetPasswordScreen extends StatelessWidget {
   const ResetPasswordScreen({super.key});
@@ -98,14 +99,15 @@ class ResetPasswordView extends StatelessWidget {
                   }
 
                   return CustomAuthCard(
-                    title: "Reset Password",
+                    title: AppLocalizations.of(context)!.rest_password,
                     titleAlign: TextAlign.start,
-                    description: "Want to try with my current password?",
+                    description:
+                        AppLocalizations.of(context)!.want_current_password,
                     descriptionAlign: TextAlign.start,
                     backTo: '',
                     login: '',
                     page: '',
-                    descriptionword: 'Login',
+                    descriptionword: AppLocalizations.of(context)!.login,
                     // this was the problem
                     descriptionWordOnTap: () {
                       Navigator.pushReplacement(
@@ -120,30 +122,45 @@ class ResetPasswordView extends StatelessWidget {
                         children: [
                           CustomTextFelidWidget(
                             controller: cubit.passwordController,
-                            label: "New Password",
+                            label: AppLocalizations.of(context)!.new_password,
                             hintText: '********',
                             type: TextInputType.visiblePassword,
                             obscure: true,
-                            errorText: state is ResetPasswordError ? state.passwordError : null,
+                            errorText:
+                                state is ResetPasswordError
+                                    ? state.passwordError
+                                    : null,
                             onChange: (value) {
-                              cubit.validateField(field: 'password', value: value);
+                              cubit.validateField(
+                                field: 'password',
+                                value: value,
+                              );
                             },
                           ),
                           SizedBox(height: 10),
                           CustomTextFelidWidget(
                             controller: cubit.confirmPasswordController,
-                            label: "Confirm New Password",
+                            label:
+                                AppLocalizations.of(
+                                  context,
+                                )!.confirm_new_password,
                             hintText: '********',
                             type: TextInputType.visiblePassword,
                             obscure: true,
-                            errorText:state is ResetPasswordError ? state.confirmPasswordError : null,
+                            errorText:
+                                state is ResetPasswordError
+                                    ? state.confirmPasswordError
+                                    : null,
                             onChange: (value) {
-                              cubit.validateField(field: 'confirmPassword', value: value);
+                              cubit.validateField(
+                                field: 'confirmPassword',
+                                value: value,
+                              );
                             },
                           ),
                           const SizedBox(height: 24),
                           FoodtekButton(
-                            text: "Update Password",
+                            text: AppLocalizations.of(context)!.update_password,
                             onPressed: () {
                               cubit.resetPassword();
                             },

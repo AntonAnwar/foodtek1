@@ -6,7 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../../../core/responseve.dart';
 import '../../../widgets/main_page_widgets/round_textfield.dart';
 import 'order_details_page.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 class DeliveryTrackingScreen extends StatefulWidget {
   const DeliveryTrackingScreen({super.key});
 
@@ -102,7 +102,7 @@ class _DeliveryTrackingScreenState extends State<DeliveryTrackingScreen> {
                       const SizedBox(width: 8),
                       Expanded(
                         child: RoundTextfield(
-                          hintText: "Search menu, restaurant or etc",
+                          hintText: AppLocalizations.of(context)!.search,
                           controller: txtSearch,
                           left: Container(
                             alignment: Alignment.center,
@@ -127,7 +127,7 @@ class _DeliveryTrackingScreenState extends State<DeliveryTrackingScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      "On The Way",
+                      AppLocalizations.of(context)!.on_the_way,
                       style: TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
@@ -143,7 +143,7 @@ class _DeliveryTrackingScreenState extends State<DeliveryTrackingScreen> {
                         // );
                       },
                       child: Text(
-                        "All Details",
+                        AppLocalizations.of(context)!.all_details,
                         style: TextStyle(color: AppColors.primaryColor),
                       ),
                     ),
@@ -154,15 +154,15 @@ class _DeliveryTrackingScreenState extends State<DeliveryTrackingScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      "Order Placed ",
+                      AppLocalizations.of(context)!.order_placed,
                       style: TextStyle(color: AppColors.primaryColor),
                     ),
                     Text(
-                      " On The Way ",
+                      AppLocalizations.of(context)!.on_the_way,
                       style: TextStyle(color: AppColors.primaryColor),
                     ),
                     Text(
-                      " Delivered",
+                      AppLocalizations.of(context)!.delivered,
                       style: TextStyle(color: AppColors.primaryColor),
                     ),
                   ],
@@ -183,7 +183,7 @@ class _DeliveryTrackingScreenState extends State<DeliveryTrackingScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "Your Delivery Hero",
+                          AppLocalizations.of(context)!.your_delivery_hero,
                           style: TextStyle(color: Colors.grey),
                         ),
                         Row(
@@ -235,7 +235,7 @@ class _DeliveryTrackingScreenState extends State<DeliveryTrackingScreen> {
 
                 SizedBox(height: 24),
 
-                Text("Your location"),
+                Text(AppLocalizations.of(context)!.your_location),
                 SizedBox(height: 4),
                 Text("$address", style: TextStyle(fontWeight: FontWeight.bold)),
               ],

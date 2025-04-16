@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 // ignore: must_be_immutable
 class CheckOutWidget extends StatelessWidget {
   void Function()? onPressed;
@@ -43,11 +43,11 @@ class CheckOutWidget extends StatelessWidget {
           Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              buildCheckoutRow('Sub-Total', subtotel),
-              buildCheckoutRow('Delivery Charge', 10),
-              buildCheckoutRow('Discount', 10),
+              buildCheckoutRow(AppLocalizations.of(context)!.sub_total, subtotel),
+              buildCheckoutRow(AppLocalizations.of(context)!.delivery_charge, 10),
+              buildCheckoutRow(AppLocalizations.of(context)!.discount, 10),
               const Divider(color: Colors.white30),
-              buildCheckoutRow('Total:', subtotel + 20, isTotal: true),
+              buildCheckoutRow('${AppLocalizations.of(context)!.total}:', subtotel + 20, isTotal: true),
               const SizedBox(height: 16),
               ElevatedButton(
                 onPressed: onPressed,
@@ -58,8 +58,8 @@ class CheckOutWidget extends StatelessWidget {
                     borderRadius: BorderRadius.circular(12),
                   ),
                 ),
-                child: const Text(
-                  'Place My Order',
+                child:  Text(
+                  AppLocalizations.of(context)!.place_my_order,
                   style: TextStyle(
                     color: Colors.green,
                     fontWeight: FontWeight.bold,

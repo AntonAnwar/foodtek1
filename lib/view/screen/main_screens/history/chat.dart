@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:foodtek/constant/colors.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 class ChatPage extends StatefulWidget {
   const ChatPage({super.key});
 
@@ -37,7 +37,7 @@ class _ChatPageState extends State<ChatPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Chat", style: TextStyle(color: Colors.black)),
+        title:  Text(AppLocalizations.of(context)!.chat, style: TextStyle(color: Colors.black)),
         backgroundColor: Colors.white,
         elevation: 0,
         leading: const BackButton(color: Colors.black),
@@ -87,7 +87,7 @@ class _ChatPageState extends State<ChatPage> {
                   child: TextField(
                     controller: _controller,
                     decoration: InputDecoration(
-                      hintText: "Write your message",
+                      hintText: AppLocalizations.of(context)!.write_your_message,
                       filled: true,
                       fillColor: Colors.grey.shade200,
                       contentPadding: const EdgeInsets.symmetric(

@@ -4,7 +4,7 @@ import 'package:foodtek/view/widgets/main_page_widgets/location_notification_sre
 
 import '../../../widgets/cart/empty_cart-widget.dart';
 import '../history/order_details_page.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 class HistoryScreen extends StatelessWidget {
   bool locationBar = true;
 
@@ -28,8 +28,8 @@ class HistoryScreen extends StatelessWidget {
             ),
           ),
           EmptyCartwidget(
-            title: 'History Empty',
-            subtitle: "You don't have order any foods before",
+            title: AppLocalizations.of(context)!.history_empty,
+            subtitle: AppLocalizations.of(context)!.empty_product_history,
           ),
           // Bottom Button
           // Positioned(

@@ -5,6 +5,7 @@ class Category {
   final String price;
   final double rating;
   final int id;
+  final String category;
 
   Category({
     required this.rating,
@@ -13,5 +14,6 @@ class Category {
     required this.description,
     required this.price,
     required this.id,
+    required this.category
   });
 }

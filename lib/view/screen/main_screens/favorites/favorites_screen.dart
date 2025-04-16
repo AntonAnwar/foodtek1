@@ -7,7 +7,7 @@ import '../../../../cubit/main_cubit/favorites_cubit.dart';
 import '../../../../core/responseve.dart';
 import '../../../widgets/main_page_widgets/location_notification_srearch.dart';
 import '../home/item_details_screen.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 class FavoritesScreen extends StatelessWidget {
   const FavoritesScreen({super.key});
 
@@ -23,7 +23,7 @@ class FavoritesScreen extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
             child: Text(
-              "Favorites",
+              AppLocalizations.of(context)!.favorite,
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
           ),
@@ -32,7 +32,7 @@ class FavoritesScreen extends StatelessWidget {
               builder: (context, state) {
                 if (state is FavoritesLoaded) {
                   if (state.favorites.isEmpty) {
-                    return Center(child: Text("No favorites yet!"));
+                    return Center(child: Text(AppLocalizations.of(context)!.no_favorites));
                   }
                   return GridView.builder(
                     padding: const EdgeInsets.only(
@@ -158,7 +158,7 @@ class FavoritesScreen extends StatelessWidget {
                                                 mainAxisSize: MainAxisSize.min,
                                                 children: [
                                                   Text(
-                                                    'Are you sure you want to remove it from favorites?',
+                                                    AppLocalizations.of(context)!.remove_from_favorite,
                                                     textAlign: TextAlign.center,
                                                     style: TextStyle(
                                                       fontSize: 16,
@@ -192,7 +192,7 @@ class FavoritesScreen extends StatelessWidget {
                                                       ), // Full-width button
                                                     ),
                                                     child: Text(
-                                                      "Yes",
+                                                      AppLocalizations.of(context)!.yes,
                                                       style: TextStyle(
                                                         color: Colors.white,
                                                         fontSize: 16,
@@ -253,8 +253,8 @@ class FavoritesScreen extends StatelessWidget {
                                     borderRadius: BorderRadius.circular(20),
                                   ),
                                 ),
-                                child: const Text(
-                                  "Order Now",
+                                child:  Text(
+                                 AppLocalizations.of(context)!.order_now,
                                   style: TextStyle(color: Colors.white),
                                 ),
                               ),

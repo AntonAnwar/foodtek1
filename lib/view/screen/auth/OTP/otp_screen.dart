@@ -5,7 +5,7 @@ import '../../../../core/responseve.dart';
 import '../../../widgets/auth/custom_foodtek_logo_widget.dart';
 import '../../../widgets/auth/OTP/custom_otp_text_field.dart';
 import '../../../widgets/auth/foodtek_button.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 class OtpScreen extends StatefulWidget {
   final VoidCallback? onPressed;
   const OtpScreen({super.key, required this.onPressed});
@@ -58,7 +58,7 @@ class _OtpScreenState extends State<OtpScreen> {
                             ),
                             const SizedBox(height: 10),
                             Text(
-                              "A 4-digit code has been sent to your email. Please enter it to verify.",
+                              AppLocalizations.of(context)!.otp_message,
                               style: TextStyle(
                                 color: Colors.grey[500],
                                 fontSize: 12,
@@ -73,7 +73,7 @@ class _OtpScreenState extends State<OtpScreen> {
 
                       /// Submit Button
                       FoodtekButton(
-                        text: "Verify",
+                        text:  AppLocalizations.of(context)!.verify,
                         onPressed: () {
                           if (widget.onPressed != null) {
                             widget.onPressed!(); // Call the passed function

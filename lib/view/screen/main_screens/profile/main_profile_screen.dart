@@ -3,11 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:foodtek/constant/colors.dart';
 import 'package:foodtek/core/responseve.dart';
+import 'package:foodtek/view/screen/auth/login.dart';
 import 'package:foodtek/view/screen/main_screens/profile/profile_screen.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 import '../../../../cubit/lang_cubit.dart';
+import '../../../widgets/main_page_widgets/language_selector_sheet.dart';
 import '../../../widgets/main_page_widgets/profile_option.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class MainProfileScreen extends StatefulWidget {
   const MainProfileScreen({super.key});
@@ -27,7 +30,7 @@ class _MainProfileScreen extends State<MainProfileScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Profile",
+          AppLocalizations.of(context)!.profile,
           style: TextStyle(
             color: AppColors.onBoardingtextColor,
             fontSize: 20,
@@ -43,26 +46,26 @@ class _MainProfileScreen extends State<MainProfileScreen> {
             children: [
               const SizedBox(height: 10),
               CircleAvatar(
-                backgroundColor: AppColors.primaryColor,
+                //backgroundColor: AppColors.primaryColor,
                 radius: 60,
 
-                child:image != null
-                    ? ClipRRect(
-                  borderRadius: BorderRadius.circular(50),
-                  child: Image.file(
-                    File(image!.path),
-                    width: 120,
-                    height: 120,
-                    fit: BoxFit.cover,
-                  ),
-                )
-                    :  Image.asset(
-                  "assets/images/profile/img_7.png",
-                  width: 120,
-                  height: 120,
-                  fit: BoxFit.fill,
-
-                ),
+                child:
+                    image != null
+                        ? ClipRRect(
+                          borderRadius: BorderRadius.circular(50),
+                          child: Image.file(
+                            File(image!.path),
+                            width: 120,
+                            height: 120,
+                            fit: BoxFit.cover,
+                          ),
+                        )
+                        : Image.asset(
+                          "assets/images/profile/img_7.png",
+                          width: 120,
+                          height: 120,
+                          fit: BoxFit.fill,
+                        ),
               ),
               SizedBox(height: 10),
               Text(
@@ -93,7 +96,7 @@ class _MainProfileScreen extends State<MainProfileScreen> {
                   child: Column(
                     children: [
                       ProfileOption(
-                        "Personal Information",
+                        AppLocalizations.of(context)!.personal_information,
                         leading: Image.asset(
                           "assets/images/profile/img.png",
                           width: responsiveHeight(context, 24),
@@ -117,19 +120,26 @@ class _MainProfileScreen extends State<MainProfileScreen> {
                         },
                       ),
                       ProfileOption(
-                        "Language",
-                        trailing: Text("العربية"),
+                        AppLocalizations.of(context)!.language,
+                        trailing: Text(
+                          context.read<LangCubit>().state.languageCode == 'en'
+                              ? 'English'
+                              : 'العربية',
+                        ),
                         leading: Image.asset(
                           "assets/images/profile/img_1.png",
                           width: responsiveHeight(context, 24),
                           height: responsiveWidth(context, 24),
                         ),
                         onTap: () {
-                          //context.read<LangCubit>().changeLang('ar');
+                          showModalBottomSheet(
+                            context: context,
+                            builder: (_) => LanguageSelectorSheet(),
+                          );
                         },
                       ),
                       ProfileOption(
-                        "Privacy Policy",
+                        AppLocalizations.of(context)!.privacy_policy,
                         leading: Image.asset(
                           "assets/images/profile/img_2.png",
                           width: responsiveHeight(context, 24),
@@ -138,7 +148,7 @@ class _MainProfileScreen extends State<MainProfileScreen> {
                         onTap: () {},
                       ),
                       ProfileOption(
-                        "Setting",
+                        AppLocalizations.of(context)!.setting,
                         leading: Image.asset(
                           "assets/images/profile/img_3.png",
                           width: responsiveHeight(context, 24),
@@ -171,7 +181,7 @@ class _MainProfileScreen extends State<MainProfileScreen> {
                     children: [
                       //Push Notifications
                       ProfileOption(
-                        "Push Notifications",
+                        AppLocalizations.of(context)!.push_notifications,
                         leading: Image.asset(
                           "assets/images/profile/img_4.png",
                           width: responsiveHeight(context, 24),
@@ -190,7 +200,7 @@ class _MainProfileScreen extends State<MainProfileScreen> {
                       ),
                       //Promotional Notifications
                       ProfileOption(
-                        "Promotional Notifications",
+                        AppLocalizations.of(context)!.promotional_notifications,
                         leading: Image.asset(
                           "assets/images/profile/img_4.png",
                           width: responsiveHeight(context, 24),
@@ -251,7 +261,7 @@ class _MainProfileScreen extends State<MainProfileScreen> {
                   child: Column(
                     children: [
                       ProfileOption(
-                        "Help Center",
+                        AppLocalizations.of(context)!.help_center,
                         leading: Image.asset(
                           "assets/images/profile/img_5.png",
                           width: responsiveHeight(context, 24),
@@ -267,10 +277,19 @@ class _MainProfileScreen extends State<MainProfileScreen> {
                             height: responsiveWidth(context, 24),
                           ),
                           title: Text(
-                            "Log Out",
+                            AppLocalizations.of(context)!.log_out,
                             style: TextStyle(color: Colors.red),
                           ),
-                          onTap: () {},
+                          onTap: () {
+                            PersistentNavBarNavigator.pushNewScreen(
+                              context,
+                              screen: LoginScreen(),
+                              withNavBar: false,
+                              // OPTIONAL VALUE. True by default.
+                              pageTransitionAnimation:
+                                  PageTransitionAnimation.cupertino,
+                            );
+                          },
                         ),
                       ),
                     ],

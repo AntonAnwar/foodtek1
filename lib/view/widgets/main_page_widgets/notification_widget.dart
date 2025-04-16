@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 void openNotificationSheet(BuildContext context) {
   showModalBottomSheet(
     // the bottom sheet
@@ -35,7 +35,7 @@ class NotificationWidget extends StatelessWidget {
                 ),
                 Expanded(
                   child: Text(
-                    "Notifications",
+                    "${AppLocalizations.of(context)!.notification}",
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                     textAlign: TextAlign.center,
                   ),
@@ -50,7 +50,7 @@ class NotificationWidget extends StatelessWidget {
             TabBar(
               labelColor: Colors.black,
               indicatorColor: Colors.green,
-              tabs: [Tab(text: "All"), Tab(text: "Unread"), Tab(text: "Read")],
+              tabs: [Tab(text: AppLocalizations.of(context)!.all), Tab(text: AppLocalizations.of(context)!.unread), Tab(text: AppLocalizations.of(context)!.read)],
             ),
             SizedBox(height: 10),
             Expanded(

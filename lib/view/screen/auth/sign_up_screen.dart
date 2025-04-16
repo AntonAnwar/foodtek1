@@ -11,7 +11,7 @@ import 'package:foodtek/view/widgets/auth/custom_text_felid_widget.dart';
 import 'package:foodtek/view/widgets/auth/foodtek_button.dart';
 import 'package:date_format_field/date_format_field.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 class SignUpScreen extends StatelessWidget {
   final GlobalKey<FormState> formkey = GlobalKey();
   final TextEditingController nameController = TextEditingController();
@@ -76,13 +76,13 @@ class SignUpScreen extends StatelessWidget {
                 CustomFoodtekLogoWidget(),
                 CustomAuthCard(
                   arrowIcon: true,
-                  title: "sign up",
+                  title: AppLocalizations.of(context)!.sign_up,
                   backTo: "",
                   login: "",
                   page: "",
                   titleAlign: TextAlign.start,
-                  description: "Already have an account ? ",
-                  descriptionword: "Login",
+                  description: AppLocalizations.of(context)!.have_account,
+                  descriptionword: AppLocalizations.of(context)!.login,
                   descriptionWordOnTap: () {
                     Navigator.pushReplacement(
                       context,
@@ -98,8 +98,8 @@ class SignUpScreen extends StatelessWidget {
                           // حقل الاسم الكامل
                           CustomTextFelidWidget(
                             controller: nameController,
-                            label: "Full Name",
-                            hintText: "Your Name",
+                            label: AppLocalizations.of(context)!.full_name,
+                            hintText: AppLocalizations.of(context)!.enter_full_name,
                             type: TextInputType.text,
                             obscure: false,
                             validator: (value) {
@@ -121,7 +121,7 @@ class SignUpScreen extends StatelessWidget {
                           // حقل البريد الإلكتروني
                           CustomTextFelidWidget(
                             controller: emailController,
-                            label: "Email",
+                            label: AppLocalizations.of(context)!.email,
                             hintText: "example@email.com",
                             type: TextInputType.emailAddress,
                             obscure: false,
@@ -163,7 +163,7 @@ class SignUpScreen extends StatelessWidget {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text("Date of Birth"),
+                                Text(AppLocalizations.of(context)!.birthdate),
                                 SizedBox(height: 8),
                                 DateFormatField(
                                   controller: dateController,
@@ -231,14 +231,14 @@ class SignUpScreen extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
 
                               children: [
-                                Text("Phone Number"),
+                                Text(AppLocalizations.of(context)!.phone_number),
                                 SizedBox(height: 8),
                                 IntlPhoneField(
                                   controller: phoneController,
                                   decoration: InputDecoration(
                                     filled: true,
                                     fillColor: Colors.grey[100],
-                                    labelText: 'Phone Number',
+                                    labelText: AppLocalizations.of(context)!.enter_phone,
                                     border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(8),
                                       borderSide: BorderSide.none,
@@ -278,7 +278,7 @@ class SignUpScreen extends StatelessWidget {
                           // حقل كلمة المرور
                           CustomTextFelidWidget(
                             controller: passwordController,
-                            label: "Set Password",
+                            label: AppLocalizations.of(context)!.set_password,
                             hintText: '*******',
                             suffixIcon: IconButton(
                               icon: Icon(

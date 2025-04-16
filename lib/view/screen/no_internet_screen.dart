@@ -6,7 +6,7 @@ import 'package:foodtek/view/screen/auth/login.dart';
 import 'package:foodtek/view/screen/onboarding_screen.dart';
 import 'package:foodtek/view/widgets/auth/foodtek_button.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 class NoInternetScreen extends StatefulWidget {
   const NoInternetScreen({super.key});
 
@@ -34,7 +34,7 @@ class _NoInternetScreenState extends State<NoInternetScreen> {
             children: [
               Icon(Icons.wifi_off, size: 100, color: Colors.grey),
               SizedBox(height: 20),
-              Text('No Internet Connection', style: TextStyle(fontSize: 18)),
+              Text(AppLocalizations.of(context)!.no_internet_connection, style: TextStyle(fontSize: 18)),
               SizedBox(height: 20),
               FoodtekButton(
                 onPressed: () async {
@@ -56,7 +56,7 @@ class _NoInternetScreenState extends State<NoInternetScreen> {
                     setState(() {});
                   }
                 },
-                text: "Try again",
+                text: AppLocalizations.of(context)!.try_again,
               ),
             ],
           ),

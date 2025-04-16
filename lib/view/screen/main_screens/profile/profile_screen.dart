@@ -9,6 +9,7 @@ import 'package:image_picker/image_picker.dart';
 
 import '../../../../core/responseve.dart';
 import '../../../widgets/auth/custom_text_felid_widget.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ProfileView extends StatefulWidget {
   const ProfileView({super.key});
@@ -39,7 +40,7 @@ class _ProfileViewState extends State<ProfileView> {
           icon: Icon(Icons.arrow_back),
         ),
         title: Text(
-          "Profile",
+          AppLocalizations.of(context)!.profile,
           style: TextStyle(
             color: AppColors.onBoardingtextColor,
             fontSize: 20,
@@ -113,8 +114,8 @@ class _ProfileViewState extends State<ProfileView> {
                           horizontal: 20,
                         ),
                         child: CustomTextFelidWidget(
-                          label: "User Name",
-                          hintText: "Enter Name",
+                          label: AppLocalizations.of(context)!.user_name,
+                          hintText: AppLocalizations.of(context)!.enter_name,
                           controller: txtName,
                           type: TextInputType.name,
                           obscure: false,
@@ -127,10 +128,11 @@ class _ProfileViewState extends State<ProfileView> {
                           horizontal: 20,
                         ),
                         child: CustomTextFelidWidget(
-                          label: "Email",
+                          label: AppLocalizations.of(context)!.email,
                           obscure: false,
                           type: TextInputType.emailAddress,
-                          hintText: "Enter Email",
+                          hintText:
+                              AppLocalizations.of(context)!.enter_your_email,
                           controller: txtEmail,
                           onChange: (value) {},
                         ),
@@ -142,10 +144,10 @@ class _ProfileViewState extends State<ProfileView> {
                         ),
                         child: CustomTextFelidWidget(
                           obscure: false,
-                          label: "Phone Number",
+                          label: AppLocalizations.of(context)!.phone_number,
                           type: TextInputType.phone,
 
-                          hintText: "Enter Mobile No",
+                          hintText: AppLocalizations.of(context)!.enter_mobile,
                           controller: txtMobile,
                           onChange: (value) {},
                         ),
@@ -157,7 +159,7 @@ class _ProfileViewState extends State<ProfileView> {
                         ),
                         child: CustomTextFelidWidget(
                           type: TextInputType.text,
-                          label: "Password",
+                          label: AppLocalizations.of(context)!.password,
                           obscure: true,
 
                           hintText: "* * * * * *",
@@ -173,9 +175,9 @@ class _ProfileViewState extends State<ProfileView> {
                         ),
                         child: CustomTextFelidWidget(
                           type: TextInputType.text,
-                          label: "Address",
+                          label: AppLocalizations.of(context)!.address,
                           obscure: false,
-                          hintText: "Enter Address",
+                          hintText: AppLocalizations.of(context)!.enter_address,
                           controller: txtAddress,
                           onChange: (value) {},
                         ),
@@ -188,7 +190,10 @@ class _ProfileViewState extends State<ProfileView> {
               const SizedBox(height: 20),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: FoodtekButton(onPressed: () {}, text: 'Update'),
+                child: FoodtekButton(
+                  onPressed: () {},
+                  text: AppLocalizations.of(context)!.update,
+                ),
               ),
               const SizedBox(height: 20),
             ],

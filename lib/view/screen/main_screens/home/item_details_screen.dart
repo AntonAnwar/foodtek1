@@ -5,6 +5,7 @@ import '../../../widgets/auth/foodtek_button.dart';
 import '../../../widgets/main_page_widgets/location_notification_srearch.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:foodtek/constant/colors.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ItemDetailsScreen extends StatefulWidget {
   final String name;
@@ -169,10 +170,10 @@ class _ItemDetailsScreenState extends State<ItemDetailsScreen> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text("Spicy"),
+                       Text(AppLocalizations.of(context)!.spicy),
                       Row(
                         children: [
-                          const Text("Mild", style: TextStyle(color: Colors.green)),
+                           Text(AppLocalizations.of(context)!.mild, style: TextStyle(color: Colors.green)),
                           SizedBox(
                             width: 150, // Adjust width as needed
                             child: SliderTheme(
@@ -196,7 +197,7 @@ class _ItemDetailsScreenState extends State<ItemDetailsScreen> {
                               ),
                             ),
                           ),
-                          const Text("Hot", style: TextStyle(color: Colors.red)),
+                           Text(AppLocalizations.of(context)!.hot, style: TextStyle(color: Colors.red)),
                         ],
                       ),
                     ],
@@ -206,7 +207,7 @@ class _ItemDetailsScreenState extends State<ItemDetailsScreen> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text("Quantity",textAlign: TextAlign.left,),
+                      Text(AppLocalizations.of(context)!.quantity,textAlign: TextAlign.left,),
                       Row(
                         children: [
                           IconButton(
@@ -260,7 +261,7 @@ class _ItemDetailsScreenState extends State<ItemDetailsScreen> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 25,vertical: 15),
               child: FoodtekButton(
-                text: "Add to Cart",
+                text: AppLocalizations.of(context)!.add_to_cart,
                 onPressed: () {
                   Navigator.pop(context);
                 },

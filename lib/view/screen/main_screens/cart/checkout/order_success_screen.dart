@@ -3,6 +3,7 @@ import 'package:foodtek/view/screen/main_screens/main_page.dart';
 import 'package:foodtek/view/widgets/auth/foodtek_button.dart';
 
 import '../../history/order_details_page.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class OrderSuccessScreen extends StatelessWidget {
   const OrderSuccessScreen({super.key});
@@ -14,7 +15,7 @@ class OrderSuccessScreen extends StatelessWidget {
         backgroundColor: Colors.transparent,
         elevation: 0,
         title: Text(
-          'Checkout',
+          AppLocalizations.of(context)!.checkout,
           style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
         ),
         actions: [
@@ -36,20 +37,20 @@ class OrderSuccessScreen extends StatelessWidget {
 
             // Success text
             Text(
-              'Your Order Done Successfully',
+              AppLocalizations.of(context)!.your_order_done_successfully,
               style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
             ),
 
             SizedBox(height: 10),
 
             Text(
-              'you will get your order within 12min.',
+              '${AppLocalizations.of(context)!.you_will_get_your_order_within} 12min.',
               style: TextStyle(fontSize: 16, color: Colors.grey.shade600),
               textAlign: TextAlign.center,
             ),
 
             Text(
-              'thanks for using our services',
+              AppLocalizations.of(context)!.thanks_for_using_our_services,
               style: TextStyle(fontSize: 16, color: Colors.grey.shade600),
               textAlign: TextAlign.center,
             ),
@@ -58,7 +59,7 @@ class OrderSuccessScreen extends StatelessWidget {
 
             // Track order button
             FoodtekButton(
-              text: "track Your Order",
+              text: AppLocalizations.of(context)!.track_your_order,
               onPressed: () {
                 Navigator.pushReplacement(
                   context,

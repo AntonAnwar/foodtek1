@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:foodtek/view/screen/main_screens/cart/checkout/order_success_screen.dart';
 import 'package:foodtek/view/widgets/auth/foodtek_button.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 class AddCardScreen extends StatelessWidget {
   const AddCardScreen({super.key});
 
@@ -12,7 +12,7 @@ class AddCardScreen extends StatelessWidget {
         backgroundColor: Colors.transparent,
         elevation: 0,
         title: Text(
-          'Add Card',
+          AppLocalizations.of(context)!.add_card,
           style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
         ),
         actions: [
@@ -33,7 +33,7 @@ class AddCardScreen extends StatelessWidget {
 
             // Card form
             Text(
-              'Name',
+              AppLocalizations.of(context)!.name,
               style: TextStyle(fontSize: 14, color: Colors.grey.shade700),
             ),
             SizedBox(height: 8),
@@ -58,7 +58,7 @@ class AddCardScreen extends StatelessWidget {
             SizedBox(height: 20),
 
             Text(
-              'Card Number',
+              AppLocalizations.of(context)!.card_number,
               style: TextStyle(fontSize: 14, color: Colors.grey.shade700),
             ),
             SizedBox(height: 8),
@@ -90,7 +90,7 @@ class AddCardScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Expiry',
+                        AppLocalizations.of(context)!.expiry,
                         style: TextStyle(
                           fontSize: 14,
                           color: Colors.grey.shade700,
@@ -157,7 +157,7 @@ class AddCardScreen extends StatelessWidget {
 
             Center(
               child: Text(
-                'We will send you an order details to your email after the successfull payment',
+                AppLocalizations.of(context)!.we_will_send,
                 style: TextStyle(fontSize: 12, color: Colors.grey),
                 textAlign: TextAlign.center,
               ),
@@ -166,7 +166,7 @@ class AddCardScreen extends StatelessWidget {
             SizedBox(height: 20),
 
             FoodtekButton(
-              text: "Pay for the order",
+              text: AppLocalizations.of(context)!.pay_for_the_order,
               onPressed: () {
                 Navigator.pushReplacement(
                   context,

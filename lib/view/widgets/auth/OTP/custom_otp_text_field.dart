@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:foodtek/constant/colors.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 // ignore: must_be_immutable
 class CustomOtpTextField extends StatelessWidget {
   void Function(String)? onSubmit;
@@ -37,8 +37,8 @@ class CustomOtpTextField extends StatelessWidget {
             context: context,
             builder: (context) {
               return AlertDialog(
-                title: Text("Verification Code"),
-                content: Text('Code entered is $verificationCode'),
+                title: Text(AppLocalizations.of(context)!.verification_code),
+                content: Text('${AppLocalizations.of(context)!.code_entered_is} $verificationCode'),
               );
             },
           );

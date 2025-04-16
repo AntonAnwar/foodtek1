@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:foodtek/view/screen/main_screens/cart/checkout/checkout_screen.dart';
 import 'package:foodtek/view/widgets/auth/foodtek_button.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 class LocationScreen extends StatefulWidget {
   const LocationScreen({super.key});
 
@@ -93,7 +93,7 @@ class _LocationScreenState extends State<LocationScreen> {
                   Expanded(
                     child: TextField(
                       decoration: InputDecoration(
-                        hintText: 'Find your location',
+                        hintText: AppLocalizations.of(context)!.find_your_location,
                         prefixIcon: Icon(Icons.search),
                         border: InputBorder.none,
                       ),
@@ -126,7 +126,7 @@ class _LocationScreenState extends State<LocationScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'your location',
+                    AppLocalizations.of(context)!.your_location,
                     style: TextStyle(color: Colors.grey, fontSize: 14),
                   ),
                   SizedBox(height: 8),
@@ -144,7 +144,7 @@ class _LocationScreenState extends State<LocationScreen> {
 
                   SizedBox(height: 15),
                   FoodtekButton(
-                    text: "Set Location",
+                    text: AppLocalizations.of(context)!.set_location,
                     onPressed: () {
                       Navigator.push(
                         context,

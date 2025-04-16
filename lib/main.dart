@@ -31,7 +31,6 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => SignUpCubit()),
         BlocProvider(create: (context) => FavoritesCubit()),
         BlocProvider(create: (context) => LangCubit()),
-
       ],
       child: BlocBuilder<LangCubit, Locale>(
         builder: (context, locale) {
@@ -53,7 +52,7 @@ class MyApp extends StatelessWidget {
             theme: ThemeData(
               fontFamily: 'Inter',
               colorScheme: ColorScheme.fromSeed(
-                seedColor:AppColors.primaryColor,
+                seedColor: AppColors.primaryColor,
               ),
             ),
             //home: FilterScreen(),

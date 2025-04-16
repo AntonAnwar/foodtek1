@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:foodtek/view/screen/main_screens/cart/checkout/add_card_screen.dart';
 import 'package:foodtek/view/widgets/cart/check_out_widget.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 class CheckoutScreen extends StatefulWidget {
   const CheckoutScreen({super.key});
 
@@ -17,7 +17,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         title: Text(
-          'Checkout',
+          AppLocalizations.of(context)!.checkout,
           style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
         ),
         actions: [
@@ -32,7 +32,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
         child: ListView(
           children: [
             Text(
-              'Pay With:',
+              AppLocalizations.of(context)!.pay_with,
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 10),
@@ -96,7 +96,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                   ),
                   SizedBox(width: 80),
                   Text(
-                    'Change',
+                    AppLocalizations.of(context)!.change,
                     style: TextStyle(
                       color: Color(0xFF32B768),
                       fontWeight: FontWeight.w500,
@@ -110,7 +110,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
 
             // Promo code
             Text(
-              'Promo Code?',
+              AppLocalizations.of(context)!.promo_code,
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 10),
@@ -119,7 +119,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                 Expanded(
                   child: TextField(
                     decoration: InputDecoration(
-                      hintText: 'Enter Your Promo',
+                      hintText: AppLocalizations.of(context)!.enter_your_promo,
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(8),
                         borderSide: BorderSide(color: Colors.grey.shade300),
@@ -143,7 +143,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                     ),
                   ),
                   onPressed: () {},
-                  child: Text('Add'),
+                  child: Text(AppLocalizations.of(context)!.add),
                 ),
               ],
             ),
@@ -152,7 +152,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
 
             // Payment method
             Text(
-              'Pay With:',
+              AppLocalizations.of(context)!.pay_with,
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 10),
@@ -164,7 +164,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                   onChanged: (value) {},
                   activeColor: Color(0xFF32B768),
                 ),
-                Text('Card', style: TextStyle(fontWeight: FontWeight.w500)),
+                Text(AppLocalizations.of(context)!.card, style: TextStyle(fontWeight: FontWeight.w500)),
                 SizedBox(width: 20),
                 Radio(
                   value: false,
@@ -172,7 +172,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                   onChanged: (value) {},
                   activeColor: Color(0xFF32B768),
                 ),
-                Text('Cash', style: TextStyle(color: Colors.grey)),
+                Text(AppLocalizations.of(context)!.cash, style: TextStyle(color: Colors.grey)),
               ],
             ),
 
@@ -180,7 +180,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
 
             // Card type
             Text(
-              'Card Type:',
+              AppLocalizations.of(context)!.card_number,
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 10),

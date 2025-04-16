@@ -6,7 +6,7 @@ import 'package:foodtek/view/screen/main_screens/history/delivery_tracking_scree
 import 'package:foodtek/view/widgets/auth/foodtek_button.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 import 'package:timelines_plus/timelines_plus.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 class OrderDetailsPage extends StatelessWidget {
   const OrderDetailsPage({super.key});
 
@@ -34,19 +34,19 @@ class OrderDetailsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final steps = [
       {
-        'title': "Order received",
+        'title': AppLocalizations.of(context)!.order_received,
         'icon': "assets/images/mainPage/location/img_2.png",
       },
       {
-        'title': "Cooking your order",
+        'title': AppLocalizations.of(context)!.cooking_your_order,
         'icon': "assets/images/mainPage/location/img_3.png",
       },
       {
-        'title': "Courier is picking up order",
+        'title': AppLocalizations.of(context)!.courier_is_picking_up_order,
         'icon': "assets/images/mainPage/location/img_4.png",
       },
       {
-        'title': "Order delivered",
+        'title': AppLocalizations.of(context)!.order_delivered,
         'icon': "assets/images/mainPage/location/img_5.png",
       },
     ];
@@ -61,8 +61,8 @@ class OrderDetailsPage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
-                "Order Details",
+               Text(
+                 AppLocalizations.of(context)!.order_details,
                 style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 20),
@@ -76,8 +76,8 @@ class OrderDetailsPage extends StatelessWidget {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text(
-                        "Order ID",
+                       Text(
+                        AppLocalizations.of(context)!.order_id,
                         style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
@@ -154,11 +154,11 @@ class OrderDetailsPage extends StatelessWidget {
                     radius: 25,
                   ),
                   const SizedBox(width: 10),
-                  const Column(
+                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "Your Delivery Hero",
+                        AppLocalizations.of(context)!.your_delivery_hero,
                         style: TextStyle(color: Colors.grey),
                       ),
                       Text(
@@ -212,7 +212,7 @@ class OrderDetailsPage extends StatelessWidget {
               ),
 
               const SizedBox(height: 20),
-              const Text("Your Location"),
+               Text(AppLocalizations.of(context)!.your_location),
               const SizedBox(height: 10),
               const Row(
                 children: [
@@ -227,21 +227,21 @@ class OrderDetailsPage extends StatelessWidget {
               const SizedBox(height: 30),
               Center(
                 child: FoodtekButton(
-                  text: "Live Track",
+                  text: AppLocalizations.of(context)!.live_track,
                   onPressed: () {
-                    // PersistentNavBarNavigator.pushNewScreen(
-                    //   context,
-                    //   screen: const DeliveryTrackingScreen(),
-                    //   withNavBar: false,
-                    //   pageTransitionAnimation:
-                    //       PageTransitionAnimation.cupertino,
-                    // );
-                    Navigator.push(
+                    PersistentNavBarNavigator.pushNewScreen(
                       context,
-                      MaterialPageRoute(
-                        builder: (context) => DeliveryTrackingScreen(),
-                      ),
+                      screen: const DeliveryTrackingScreen(),
+                      withNavBar: false,
+                      pageTransitionAnimation:
+                          PageTransitionAnimation.cupertino,
                     );
+                    // Navigator.push(
+                    //   context,
+                    //   MaterialPageRoute(
+                    //     builder: (context) => DeliveryTrackingScreen(),
+                    //   ),
+                    // );
                   },
                 ),
               ),

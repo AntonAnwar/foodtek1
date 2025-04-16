@@ -63,8 +63,7 @@ class _LoginScreenState extends State<LoginScreen> {
               context,
               MaterialPageRoute(builder: (context) => MainPage()),
             );
-          }
-          else if (state is LoginError) {
+          } else if (state is LoginError) {
             fieldErrors = state.fieldErrors;
             // Show error message using SnackBar
             // ScaffoldMessenger.of(context).showSnackBar(
@@ -94,7 +93,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         login: "",
                         page: "",
                         titleAlign: TextAlign.center,
-                        description: "Don't have an account?",
+                        description: AppLocalizations.of(context)!.dont_have_account,
                         descriptionAlign: TextAlign.center,
                         descriptionword: AppLocalizations.of(context)!.sign_up,
                         descriptionWordOnTap: () {
@@ -109,20 +108,23 @@ class _LoginScreenState extends State<LoginScreen> {
                           // Email Field
                           CustomTextFelidWidget(
                             controller: _emailController,
-                            label: "Email",
+                            label: AppLocalizations.of(context)!.email,
                             hintText: 'example@email.com',
                             type: TextInputType.emailAddress,
                             obscure: false,
                             errorText: fieldErrors['email'] ?? '',
                             onChange: (value) {
-                              context.read<LoginCubit>().validateField(field: 'email', value: value);
+                              context.read<LoginCubit>().validateField(
+                                field: 'email',
+                                value: value,
+                              );
                             },
                           ),
 
                           // Password Field
                           CustomTextFelidWidget(
                             controller: _passwordController,
-                            label: "Password",
+                            label: AppLocalizations.of(context)!.password,
                             hintText: '*******',
 
                             suffixIcon: IconButton(
@@ -142,7 +144,10 @@ class _LoginScreenState extends State<LoginScreen> {
                             obscure: _obscurePassword,
                             errorText: fieldErrors['password'] ?? '',
                             onChange: (value) {
-                              context.read<LoginCubit>().validateField(field: 'password', value: value);
+                              context.read<LoginCubit>().validateField(
+                                field: 'password',
+                                value: value,
+                              );
                             },
                           ),
 
@@ -172,7 +177,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   ),
                                   SizedBox(width: 8),
                                   Text(
-                                    'Remember me',
+                                    AppLocalizations.of(context)!.remember_me,
                                     style: TextStyle(
                                       color: Colors.grey[700],
                                       fontSize: 14,
@@ -192,7 +197,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   );
                                 },
                                 child: Text(
-                                  'Forgot Password ?',
+                                  AppLocalizations.of(context)!.forget_password,
                                   style: TextStyle(
                                     color: Color(0xFF38B443),
                                     fontSize: 14,
@@ -205,7 +210,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           // Login Button
                           SizedBox(height: 24),
                           FoodtekButton(
-                            text: "Login",
+                            text: AppLocalizations.of(context)!.login,
                             isLoading: state is LoginLoading,
                             onPressed:
                                 state is LoginLoading
@@ -254,7 +259,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           // Social Login Buttons
                           SizedBox(height: 16),
                           CustomSocialLoginButton(
-                            text: 'Continue with Google',
+                            text: AppLocalizations.of(context)!.google,
                             iconPath: 'assets/images/auth/google.png',
                             onPressed: () {
                               // Handle Google login
@@ -263,7 +268,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
                           SizedBox(height: 12),
                           CustomSocialLoginButton(
-                            text: 'Continue with Facebook',
+                            text: AppLocalizations.of(context)!.facebook,
                             iconPath: 'assets/images/auth/facebook_icon.png',
                             onPressed: () {
                               // Handle Facebook login
@@ -272,7 +277,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
                           SizedBox(height: 12),
                           CustomSocialLoginButton(
-                            text: 'Continue with Apple',
+                            text: AppLocalizations.of(context)!.apple,
                             iconPath: 'assets/images/auth/apple.png',
                             onPressed: () {
                               // Handle Apple login

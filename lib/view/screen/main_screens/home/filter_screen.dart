@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:foodtek/constant/colors.dart';
 
+import '../../../../cubit/lang_cubit.dart';
 import '../../../widgets/main_page_widgets/location_notification_srearch.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class FilterScreen extends StatefulWidget {
   const FilterScreen({super.key});
@@ -11,29 +14,13 @@ class FilterScreen extends StatefulWidget {
 }
 
 class FilterScreenState extends State<FilterScreen> {
-  String _selectedCategory = "All";
+  late String selectedCategory;
 
-  List<Map<String, String>> dishes = [
-    {"name": "Cheeseburger", "category": "Fast Food"},
-    {"name": "Chocolate Cake", "category": "Dessert"},
-    {"name": "Spicy Crab Cakes", "category": "Sea Food"},
-    {"name": "Miso-Glazed Cod", "category": "Sea Food"},
-    {"name": "Lobster Thermidor", "category": "Sea Food"},
-    {"name": "Seafood Paella", "category": "Sea Food"},
-    {"name": "Tuna Tartare", "category": "Sea Food"},
-    {"name": "Clam Chowder", "category": "Sea Food"},
-  ];
+  @override
+  void initState() {
+    super.initState();
 
-  List<String> categories = ["All", "Fast Food", "Sea Food", "Dessert"];
-
-  List<Map<String, String>> getFilteredDishes() {
-    if (_selectedCategory == "All") {
-      return dishes;
-    } else {
-      return dishes
-          .where((dish) => dish["category"] == _selectedCategory)
-          .toList();
-    }
+    selectedCategory = "All";
   }
 
   final double _minPrice = 0;
@@ -55,9 +42,64 @@ class FilterScreenState extends State<FilterScreen> {
 
   @override
   Widget build(BuildContext context) {
+    //selectedCategory = AppLocalizations.of(context)!.all;
+
+    List<Map<String, String>> dishes = [
+      {
+        "name": AppLocalizations.of(context)!.cheeseburger,
+        "category": AppLocalizations.of(context)!.fast_food,
+      },
+      {
+        "name": AppLocalizations.of(context)!.chocolate_cake,
+        "category": AppLocalizations.of(context)!.dessert,
+      },
+      {
+        "name": AppLocalizations.of(context)!.spicy_crab_cakes,
+        "category": AppLocalizations.of(context)!.sea_food,
+      },
+      {
+        "name": AppLocalizations.of(context)!.miso_glazed_cod,
+        "category": AppLocalizations.of(context)!.sea_food,
+      },
+      {
+        "name": AppLocalizations.of(context)!.lobster_thermidor,
+        "category": AppLocalizations.of(context)!.sea_food,
+      },
+      {
+        "name": AppLocalizations.of(context)!.seafood_paella,
+        "category": AppLocalizations.of(context)!.sea_food,
+      },
+      {
+        "name": AppLocalizations.of(context)!.tuna_tartare,
+        "category": AppLocalizations.of(context)!.sea_food,
+      },
+      {
+        "name": AppLocalizations.of(context)!.clam_chowder,
+        "category": AppLocalizations.of(context)!.sea_food,
+      },
+    ];
+
+    List<String> categories = [
+      AppLocalizations.of(context)!.all,
+      AppLocalizations.of(context)!.fast_food,
+      AppLocalizations.of(context)!.sea_food,
+      AppLocalizations.of(context)!.dessert,
+    ];
+
+    List<Map<String, String>> getFilteredDishes() {
+      if (selectedCategory == AppLocalizations.of(context)!.all) {
+        return dishes;
+      } else {
+        return dishes
+            .where((dish) => dish["category"] == selectedCategory)
+            .toList();
+      }
+    }
+
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
     return Scaffold(
+      backgroundColor: Colors.white,
       //appBar: AppBar(title: Text("Filter"), centerTitle: true),
       body: SingleChildScrollView(
         padding: EdgeInsets.all(10),
@@ -66,12 +108,15 @@ class FilterScreenState extends State<FilterScreen> {
           children: [
             LocationNotificationSrearch(showSearchBar: false),
             Padding(
-              padding: const EdgeInsets.all(10),
+              padding: const EdgeInsets.all(5),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
 
                 children: [
-                  Text("Filter", style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20)),
+                  Text(
+                    AppLocalizations.of(context)!.filter,
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                  ),
                   // Price Range
                   SizedBox(height: height * .02),
 
@@ -85,8 +130,11 @@ class FilterScreenState extends State<FilterScreen> {
                             border: Border.all(color: Colors.grey.shade300),
                           ),
                           child: Align(
-                            alignment: Alignment.centerLeft,
-                            child: Text("Min", textAlign: TextAlign.left),
+                            alignment:
+                                context.read<LangCubit>().state.languageCode == "en"
+                                    ? Alignment.centerLeft
+                                    : Alignment.centerRight,
+                            child: Text(AppLocalizations.of(context)!.min),
                           ),
                         ),
                       ),
@@ -99,8 +147,14 @@ class FilterScreenState extends State<FilterScreen> {
                             border: Border.all(color: Colors.grey.shade300),
                           ),
                           child: Align(
-                            alignment: Alignment.centerLeft,
-                            child: Text("Max", textAlign: TextAlign.left),
+                            alignment:
+                                context.read<LangCubit>().state.languageCode == "en"
+                                    ? Alignment.centerLeft
+                                    : Alignment.centerRight,
+                            child: Text(
+                              AppLocalizations.of(context)!.max,
+                              textAlign: TextAlign.left,
+                            ),
                           ),
                         ),
                       ),
@@ -162,8 +216,14 @@ class FilterScreenState extends State<FilterScreen> {
                             border: Border.all(color: Colors.grey.shade300),
                           ),
                           child: Align(
-                            alignment: Alignment.centerLeft,
-                            child: Text("Min", textAlign: TextAlign.left),
+                            alignment:
+                                context.read<LangCubit>().state.languageCode == "en"
+                                    ? Alignment.centerLeft
+                                    : Alignment.centerRight,
+                            child: Text(
+                              AppLocalizations.of(context)!.min,
+                              textAlign: TextAlign.left,
+                            ),
                           ),
                         ),
                       ),
@@ -176,8 +236,14 @@ class FilterScreenState extends State<FilterScreen> {
                             border: Border.all(color: Colors.grey.shade300),
                           ),
                           child: Align(
-                            alignment: Alignment.centerLeft,
-                            child: Text("Max", textAlign: TextAlign.left),
+                            alignment:
+                                context.read<LangCubit>().state.languageCode == "en"
+                                    ? Alignment.centerLeft
+                                    : Alignment.centerRight,
+                            child: Text(
+                              AppLocalizations.of(context)!.max,
+                              textAlign: TextAlign.left,
+                            ),
                           ),
                         ),
                       ),
@@ -228,7 +294,7 @@ class FilterScreenState extends State<FilterScreen> {
                   ),
                   SizedBox(height: height * .02),
                   Text(
-                    "Category",
+                    AppLocalizations.of(context)!.category,
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                   Wrap(
@@ -244,15 +310,15 @@ class FilterScreenState extends State<FilterScreen> {
                               category,
                               style: TextStyle(
                                 color:
-                                    _selectedCategory == category
+                                    selectedCategory == category
                                         ? Colors.white
                                         : Colors.black,
                               ),
                             ),
-                            selected: _selectedCategory == category,
+                            selected: selectedCategory == category,
                             onSelected: (selected) {
                               setState(() {
-                                _selectedCategory = category;
+                                selectedCategory = category;
                               });
                             },
                           );
@@ -262,7 +328,7 @@ class FilterScreenState extends State<FilterScreen> {
 
                   // Location Selection
                   Text(
-                    "Location",
+                    AppLocalizations.of(context)!.location,
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                   ToggleButtons(
@@ -298,11 +364,18 @@ class FilterScreenState extends State<FilterScreen> {
                   SizedBox(height: 16),
 
                   // Dishes Selection
-                  Text("Dishes", style: TextStyle(fontWeight: FontWeight.bold)),
+                  Text(
+                    AppLocalizations.of(context)!.dish,
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
                   Wrap(
                     spacing: 8,
                     children:
                         getFilteredDishes().map((dish) {
+                          if (selectedCategory.isEmpty) {
+                            selectedCategory =
+                                AppLocalizations.of(context)!.all;
+                          }
                           return FilterChip(
                             showCheckmark: false,
                             label: Text(
@@ -324,6 +397,7 @@ class FilterScreenState extends State<FilterScreen> {
                                 } else {
                                   _selectedDishes.remove(dish["name"]!);
                                 }
+                                setState(() {});
                               });
                             },
                           );
