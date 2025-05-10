@@ -13,33 +13,38 @@ class LanguageSelectorSheet extends StatelessWidget {
     final currentLang = context.read<LangCubit>().state.languageCode;
 
     return Container(
-      height: 175,
-      child: SingleChildScrollView(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            RadioListTile<String>(
-              activeColor: AppColors.primaryColor,
-              title: Text('English'),
-              value: 'en',
-              groupValue: currentLang,
-              onChanged: (value) {
-                context.read<LangCubit>().changeLang(value!);
-                Navigator.pop(context);
-              },
-            ),
-            RadioListTile<String>(
-              activeColor: AppColors.primaryColor,
-              title: Text('العربية'),
-              value: 'ar',
-              groupValue: currentLang,
-              onChanged: (value) {
-                context.read<LangCubit>().changeLang(value!);
-                Navigator.pop(context);
-              },
-            ),
-          ],
+      decoration: BoxDecoration(
+        color: Theme.of(context).colorScheme.secondary,
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(20),
+          topRight: Radius.circular(20),
         ),
+      ),
+      height: 175,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          RadioListTile<String>(
+            activeColor: AppColors.primaryColor,
+            title: Text('English'),
+            value: 'en',
+            groupValue: currentLang,
+            onChanged: (value) {
+              context.read<LangCubit>().changeLang(value!);
+              Navigator.pop(context);
+            },
+          ),
+          RadioListTile<String>(
+            activeColor: AppColors.primaryColor,
+            title: Text('العربية'),
+            value: 'ar',
+            groupValue: currentLang,
+            onChanged: (value) {
+              context.read<LangCubit>().changeLang(value!);
+              Navigator.pop(context);
+            },
+          ),
+        ],
       ),
     );
   }

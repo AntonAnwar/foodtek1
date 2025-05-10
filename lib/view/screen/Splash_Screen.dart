@@ -10,6 +10,7 @@ import 'package:foodtek/view/screen/no_internet_screen.dart';
 import 'package:foodtek/view/screen/onboarding_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../cubit/lang_cubit.dart';
+import '../../cubit/theme_cubit.dart';
 import 'main_screens/main_page.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -25,6 +26,7 @@ class _SplashScreenState extends State<SplashScreen> {
     // isInternetAvailable();
     _checkIfFirstLaunch();
     context.read<LangCubit>().getLang();
+   // context.read()<ThemeCubit>().loadTheme();
     super.initState();
   }
 

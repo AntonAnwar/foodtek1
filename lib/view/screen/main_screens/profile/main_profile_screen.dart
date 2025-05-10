@@ -5,9 +5,11 @@ import 'package:foodtek/constant/colors.dart';
 import 'package:foodtek/core/responseve.dart';
 import 'package:foodtek/view/screen/auth/login.dart';
 import 'package:foodtek/view/screen/main_screens/profile/profile_screen.dart';
+import 'package:foodtek/view/screen/main_screens/profile/theme_selecter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 import '../../../../cubit/lang_cubit.dart';
+import '../../../../cubit/theme_cubit.dart';
 import '../../../widgets/main_page_widgets/language_selector_sheet.dart';
 import '../../../widgets/main_page_widgets/profile_option.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -27,12 +29,16 @@ class _MainProfileScreen extends State<MainProfileScreen> {
       false; // Track Promotional Notifications
   @override
   Widget build(BuildContext context) {
+    final themeCubit = context.watch<ThemeCubit>();
+    final currentMode = themeCubit.state;
     return Scaffold(
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
+        backgroundColor: Theme.of(context).colorScheme.surface,
         title: Text(
           AppLocalizations.of(context)!.profile,
           style: TextStyle(
-            color: AppColors.onBoardingtextColor,
+            color: Theme.of(context).textTheme.bodyLarge?.color,
             fontSize: 20,
             fontWeight: FontWeight.w800,
           ),
@@ -70,26 +76,33 @@ class _MainProfileScreen extends State<MainProfileScreen> {
               SizedBox(height: 10),
               Text(
                 "Ahmad Daboor",
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                  color: Theme.of(context).textTheme.bodyLarge?.color,
+                ),
               ),
               SizedBox(height: 10),
               Text(
                 "ahmad1709@gmail.com",
-                style: TextStyle(fontSize: 14, color: Colors.grey),
+                style: TextStyle(
+                  fontSize: 14,
+                  color: Theme.of(context).textTheme.bodySmall?.color,
+                ),
               ),
               SizedBox(height: 20),
               Container(
                 margin: const EdgeInsets.symmetric(horizontal: 10),
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: Theme.of(context).colorScheme.surface,
                   borderRadius: BorderRadius.circular(12),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.1),
-                      blurRadius: 6,
-                      spreadRadius: 2,
-                    ),
-                  ],
+                  // boxShadow: [
+                  //   BoxShadow(
+                  //     color: Colors.black.withOpacity(0.1),
+                  //     blurRadius: 6,
+                  //     spreadRadius: 2,
+                  //   ),
+                  // ],
                 ),
                 child: Material(
                   color: Colors.transparent,
@@ -98,6 +111,7 @@ class _MainProfileScreen extends State<MainProfileScreen> {
                       ProfileOption(
                         AppLocalizations.of(context)!.personal_information,
                         leading: Image.asset(
+                          color: Theme.of(context).textTheme.bodyLarge?.color,
                           "assets/images/profile/img.png",
                           width: responsiveHeight(context, 24),
                           height: responsiveWidth(context, 24),
@@ -127,20 +141,41 @@ class _MainProfileScreen extends State<MainProfileScreen> {
                               : 'العربية',
                         ),
                         leading: Image.asset(
+                          color: Theme.of(context).textTheme.bodyLarge?.color,
                           "assets/images/profile/img_1.png",
                           width: responsiveHeight(context, 24),
                           height: responsiveWidth(context, 24),
                         ),
                         onTap: () {
                           showModalBottomSheet(
+                            isScrollControlled: true,
+                            backgroundColor:
+                                Theme.of(context).colorScheme.secondary,
                             context: context,
                             builder: (_) => LanguageSelectorSheet(),
                           );
                         },
                       ),
                       ProfileOption(
+                        "Theme",
+                        leading: Image.asset(
+                          color: Theme.of(context).textTheme.bodyLarge?.color,
+                          "assets/images/profile/dark-theme-icon.png",
+                          width: responsiveHeight(context, 24),
+                          height: responsiveWidth(context, 24),
+                        ),
+                        onTap: () {
+                          showModalBottomSheet(
+                            isScrollControlled: true,
+                            context: context,
+                            builder: (_) => ThemeSelectorScreen(),
+                          );
+                        },
+                      ),
+                      ProfileOption(
                         AppLocalizations.of(context)!.privacy_policy,
                         leading: Image.asset(
+                          color: Theme.of(context).textTheme.bodyLarge?.color,
                           "assets/images/profile/img_2.png",
                           width: responsiveHeight(context, 24),
                           height: responsiveWidth(context, 24),
@@ -150,6 +185,7 @@ class _MainProfileScreen extends State<MainProfileScreen> {
                       ProfileOption(
                         AppLocalizations.of(context)!.setting,
                         leading: Image.asset(
+                          color: Theme.of(context).textTheme.bodyLarge?.color,
                           "assets/images/profile/img_3.png",
                           width: responsiveHeight(context, 24),
                           height: responsiveWidth(context, 24),
@@ -165,15 +201,15 @@ class _MainProfileScreen extends State<MainProfileScreen> {
               Container(
                 margin: const EdgeInsets.symmetric(horizontal: 10),
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: Theme.of(context).colorScheme.surface,
                   borderRadius: BorderRadius.circular(12),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.1),
-                      blurRadius: 6,
-                      spreadRadius: 2,
-                    ),
-                  ],
+                  // boxShadow: [
+                  //   BoxShadow(
+                  //     color: Colors.black.withOpacity(0.1),
+                  //     blurRadius: 6,
+                  //     spreadRadius: 2,
+                  //   ),
+                  // ],
                 ),
                 child: Material(
                   color: Colors.transparent,
@@ -183,12 +219,14 @@ class _MainProfileScreen extends State<MainProfileScreen> {
                       ProfileOption(
                         AppLocalizations.of(context)!.push_notifications,
                         leading: Image.asset(
+                          color: Theme.of(context).textTheme.bodyLarge?.color,
                           "assets/images/profile/img_4.png",
                           width: responsiveHeight(context, 24),
                           height: responsiveWidth(context, 24),
                         ),
                         trailing: Switch(
                           activeTrackColor: AppColors.primaryColor,
+
                           value: isPushNotificationsEnabled,
                           onChanged: (value) {
                             setState(() {
@@ -202,6 +240,7 @@ class _MainProfileScreen extends State<MainProfileScreen> {
                       ProfileOption(
                         AppLocalizations.of(context)!.promotional_notifications,
                         leading: Image.asset(
+                          color: Theme.of(context).textTheme.bodyLarge?.color,
                           "assets/images/profile/img_4.png",
                           width: responsiveHeight(context, 24),
                           height: responsiveWidth(context, 24),
@@ -246,15 +285,15 @@ class _MainProfileScreen extends State<MainProfileScreen> {
               Container(
                 margin: const EdgeInsets.symmetric(horizontal: 10),
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: Theme.of(context).colorScheme.surface,
                   borderRadius: BorderRadius.circular(12),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.1),
-                      blurRadius: 6,
-                      spreadRadius: 2,
-                    ),
-                  ],
+                  // boxShadow: [
+                  //   BoxShadow(
+                  //     color: Colors.black.withOpacity(0.1),
+                  //     blurRadius: 6,
+                  //     spreadRadius: 2,
+                  //   ),
+                  // ],
                 ),
                 child: Material(
                   color: Colors.transparent,
@@ -263,6 +302,7 @@ class _MainProfileScreen extends State<MainProfileScreen> {
                       ProfileOption(
                         AppLocalizations.of(context)!.help_center,
                         leading: Image.asset(
+                          color: Theme.of(context).textTheme.bodyLarge?.color,
                           "assets/images/profile/img_5.png",
                           width: responsiveHeight(context, 24),
                           height: responsiveWidth(context, 24),
@@ -272,6 +312,7 @@ class _MainProfileScreen extends State<MainProfileScreen> {
                       InkWell(
                         child: ListTile(
                           leading: Image.asset(
+                            color: Theme.of(context).textTheme.bodyLarge?.color,
                             "assets/images/profile/img_6.png",
                             width: responsiveHeight(context, 24),
                             height: responsiveWidth(context, 24),

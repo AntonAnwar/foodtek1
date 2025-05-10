@@ -68,8 +68,9 @@ class _LocationNotificationSrearchState
                     Text(
                       "Delivering to",
                       style: TextStyle(
-                        color: AppColors.onBoardingtextColor,
+                        color: Theme.of(context).textTheme.bodyLarge!.color,
                         fontSize: 11,
+
                       ),
                     ),
                     const SizedBox(height: 6),
@@ -81,7 +82,7 @@ class _LocationNotificationSrearchState
                               // if the user didnt allow the location
                               "Current Location",
                               style: TextStyle(
-                                color: AppColors.onBoardingtextColor,
+                                color: Theme.of(context).textTheme.bodySmall!.color,
                                 fontSize: 16,
                                 fontWeight: FontWeight.w700,
                               ),
@@ -92,7 +93,7 @@ class _LocationNotificationSrearchState
                               overflow: TextOverflow.ellipsis,
                               maxLines: 1,
                               textAlign: TextAlign.start,
-                              style: TextStyle(fontSize: 10),
+                              style: TextStyle(fontSize: 10,color: Theme.of(context).textTheme.bodySmall!.color,),
                             ),
 
                         const SizedBox(width: 5),
@@ -136,7 +137,7 @@ class _LocationNotificationSrearchState
               left: Container(
                 alignment: Alignment.center,
                 width: 30,
-                child: Icon(Icons.search),
+                child: Icon(Icons.search,color: Theme.of(context).textTheme.bodyLarge!.color,),
               ),
               right: IconButton(
                 onPressed: () {

@@ -20,7 +20,7 @@ class ProfileOption extends StatelessWidget {
       onTap: onTap,
       child: ListTile(
         leading: leading,
-        title: Text(title),
+        title: Text(title,style: TextStyle(color: Theme.of(context).textTheme.bodyLarge?.color),),
         trailing: trailing ?? Icon(Icons.arrow_forward_ios, size: 16),
       ),
     );

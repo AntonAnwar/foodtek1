@@ -79,7 +79,7 @@ class CustomSocialLoginButton extends StatelessWidget {
           children: [
             Image.asset(iconPath, height: 24, width: 24),
             SizedBox(width: 12),
-            Text(text, style: TextStyle(color: Colors.black87, fontSize: 16)),
+            Text(text, style: TextStyle(color: Theme.of(context).textTheme.bodyLarge?.color, fontSize: 16)),
           ],
         ),
       ),

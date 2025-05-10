@@ -7,6 +7,7 @@ import 'package:foodtek/view/widgets/auth/foodtek_button.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 import 'package:timelines_plus/timelines_plus.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 class OrderDetailsPage extends StatelessWidget {
   const OrderDetailsPage({super.key});
 
@@ -53,7 +54,7 @@ class OrderDetailsPage extends StatelessWidget {
     int currentStep = 2; // change this to reflect order status
 
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
 
       body: SafeArea(
         child: SingleChildScrollView(
@@ -61,9 +62,13 @@ class OrderDetailsPage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-               Text(
-                 AppLocalizations.of(context)!.order_details,
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              Text(
+                AppLocalizations.of(context)!.order_details,
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                  color: Theme.of(context).textTheme.bodyLarge?.color,
+                ),
               ),
               const SizedBox(height: 20),
               Row(
@@ -76,18 +81,26 @@ class OrderDetailsPage extends StatelessWidget {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                       Text(
+                      Text(
                         AppLocalizations.of(context)!.order_id,
                         style: TextStyle(
+                          color: Theme.of(context).textTheme.bodyLarge?.color,
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
                       Text(
                         "#OD3849384",
-                        style: TextStyle(color: AppColors.onBoardingtextColor),
+                        style: TextStyle(
+                          color: Theme.of(context).textTheme.bodySmall?.color,
+                        ),
                       ),
-                      const Text("25m"),
+                      Text(
+                        "25m",
+                        style: TextStyle(
+                          color: Theme.of(context).textTheme.bodyLarge?.color,
+                        ),
+                      ),
                     ],
                   ),
                 ],
@@ -116,7 +129,9 @@ class OrderDetailsPage extends StatelessWidget {
                                   ? FontWeight.w600
                                   : FontWeight.normal,
                           color:
-                              index <= currentStep ? Colors.black : Colors.grey,
+                              index <= currentStep
+                                  ? Theme.of(context).textTheme.bodyLarge?.color
+                                  : Colors.grey.shade500,
                         ),
                       ),
                     );
@@ -154,18 +169,19 @@ class OrderDetailsPage extends StatelessWidget {
                     radius: 25,
                   ),
                   const SizedBox(width: 10),
-                   Column(
+                  Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         AppLocalizations.of(context)!.your_delivery_hero,
-                        style: TextStyle(color: Colors.grey),
+                        style: TextStyle(color: Colors.grey.shade300),
                       ),
                       Text(
                         "Alexander V.",
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 16,
+                          color: Theme.of(context).textTheme.bodyLarge?.color,
                         ),
                       ),
                       Row(
@@ -212,14 +228,19 @@ class OrderDetailsPage extends StatelessWidget {
               ),
 
               const SizedBox(height: 20),
-               Text(AppLocalizations.of(context)!.your_location),
+              Text(AppLocalizations.of(context)!.your_location,style: TextStyle(color: Theme.of(context).textTheme.bodyLarge?.color),),
               const SizedBox(height: 10),
-              const Row(
+              Row(
                 children: [
                   Icon(Icons.location_on, color: Colors.green),
                   SizedBox(width: 8),
                   Flexible(
-                    child: Text("123 Al-Madina Street, Abdali, Amman, Jordan"),
+                    child: Text(
+                      "123 Al-Madina Street, Abdali, Amman, Jordan",
+                      style: TextStyle(
+                        color: Theme.of(context).textTheme.bodySmall?.color,
+                      ),
+                    ),
                   ),
                 ],
               ),

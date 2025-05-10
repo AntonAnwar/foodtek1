@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:foodtek/core/responseve.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 import '../../../constant/colors.dart';
 import '../../../constant/main_screen/main_screen_data.dart';
+import '../../../cubit/theme_cubit.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
@@ -132,7 +134,13 @@ class _MainPageState extends State<MainPage> {
     return PersistentTabView(
       // the bottom sheet
       navBarHeight: 61,
-      backgroundColor: Color.fromRGBO(219, 244, 209, 1),
+      backgroundColor:
+      context
+          .watch<ThemeCubit>()
+          .state ==
+          ThemeMode.light
+          ? Color.fromRGBO(219, 244, 209, 1)
+          : Colors.black26,
       context,
       controller: _controller,
       screens: _buildScreens(),

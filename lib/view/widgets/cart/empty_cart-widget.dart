@@ -21,13 +21,13 @@ class EmptyCartwidget extends StatelessWidget {
           const SizedBox(height: 24),
           Text(
             title!,
-            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold,color: Theme.of(context).textTheme.bodyLarge?.color),
           ),
           const SizedBox(height: 8),
           Text(
             subtitle!,
             textAlign: TextAlign.center,
-            style: TextStyle(color: Colors.grey),
+            style: TextStyle(color: Theme.of(context).textTheme.bodySmall?.color),
           ),
         ],
       ),

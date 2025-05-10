@@ -48,7 +48,7 @@ class _ItemDetailsScreenState extends State<ItemDetailsScreen> {
   Widget build(BuildContext context) {
 
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -80,33 +80,6 @@ class _ItemDetailsScreenState extends State<ItemDetailsScreen> {
                     widget.name,
                     style: TextStyle(fontSize: 22, fontWeight: FontWeight.w800),
                   ),
-              // BlocBuilder<FavoritesCubit, FavoritesState>(
-              //   builder: (context, state) {
-              //     final favCubit = context.read<FavoritesCubit>();
-              //
-              //     final favoriteItem = FavoriteItem(
-              //       id: widget.id,
-              //       name: widget.name,
-              //       image: widget.image,
-              //       price: widget.price,
-              //       description: widget.description,
-              //       rating: widget.rating,
-              //     );
-              //
-              //     final isFav = favCubit.isFavorite(favoriteItem);
-              //
-              //     return IconButton(
-              //       icon: Icon(
-              //         isFav ? Icons.favorite : Icons.favorite_border,
-              //         color: Colors.red,
-              //       ),
-              //       onPressed: () {
-              //         favCubit.toggleFavorite(favoriteItem);
-              //       },
-              //     );
-              //   },
-              // )
-
               ],
               ),
             ),

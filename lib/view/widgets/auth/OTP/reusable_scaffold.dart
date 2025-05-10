@@ -10,6 +10,8 @@ class ReusableScaffold extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.primaryColor,
+     // backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+
       body: Stack(
         children: [
           Positioned.fill(

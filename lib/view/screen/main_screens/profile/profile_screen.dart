@@ -32,7 +32,9 @@ class _ProfileViewState extends State<ProfileView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
+        backgroundColor: Theme.of(context).colorScheme.surface,
         leading: IconButton(
           onPressed: () {
             Navigator.pop(context);
@@ -42,7 +44,7 @@ class _ProfileViewState extends State<ProfileView> {
         title: Text(
           AppLocalizations.of(context)!.profile,
           style: TextStyle(
-            color: AppColors.onBoardingtextColor,
+            color: Theme.of(context).textTheme.bodyLarge?.color,
             fontSize: 20,
             fontWeight: FontWeight.w800,
           ),
@@ -83,26 +85,26 @@ class _ProfileViewState extends State<ProfileView> {
               SizedBox(height: 10),
               Text(
                 "Ahmad Daboor",
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold,color: Theme.of(context).textTheme.bodyLarge?.color),
               ),
               SizedBox(height: 10),
               Text(
                 "ahmad1709@gmail.com",
-                style: TextStyle(fontSize: 14, color: Colors.grey),
+                style: TextStyle(fontSize: 14, color: Theme.of(context).textTheme.bodySmall?.color),
               ),
               SizedBox(height: 20),
               Container(
                 margin: const EdgeInsets.symmetric(horizontal: 20),
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: Theme.of(context).colorScheme.surface,
                   borderRadius: BorderRadius.circular(12),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.1),
-                      blurRadius: 6,
-                      spreadRadius: 2,
-                    ),
-                  ],
+                  // boxShadow: [
+                  //   BoxShadow(
+                  //     color: Colors.black.withOpacity(0.1),
+                  //     blurRadius: 6,
+                  //     spreadRadius: 2,
+                  //   ),
+                  // ],
                 ),
                 child: Material(
                   color: Colors.transparent,

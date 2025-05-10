@@ -5,6 +5,7 @@ import 'package:foodtek/view/screen/main_screens/cart/checkout/checkout_screen.d
 import 'package:foodtek/view/widgets/auth/foodtek_button.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 class LocationScreen extends StatefulWidget {
   const LocationScreen({super.key});
 
@@ -19,6 +20,7 @@ class _LocationScreenState extends State<LocationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: Stack(
         children: [
           // Map background
@@ -28,23 +30,19 @@ class _LocationScreenState extends State<LocationScreen> {
           Positioned.fill(
             child: GoogleMap(
               mapToolbarEnabled: true,
-              mapType:
-                  MapType
-                      .normal, // نوع الخريطة، هنا يتم استخدام النمط الهجين (Hybrid) الذي يجمع بين الخريطة العادية وصور الأقمار الصناعية
-              myLocationButtonEnabled:
-                  true, // تفعيل زر تحديد الموقع الحالي للمستخدم على الخريطة
+              mapType: MapType.normal,
+              // نوع الخريطة، هنا يتم استخدام النمط الهجين (Hybrid) الذي يجمع بين الخريطة العادية وصور الأقمار الصناعية
+              myLocationButtonEnabled: true,
 
-              myLocationEnabled:
-                  true, // إظهار موقع المستخدم الحالي على الخريطة إذا كانت الصلاحيات مفعلة
+              // تفعيل زر تحديد الموقع الحالي للمستخدم على الخريطة
+              myLocationEnabled: true,
 
-              markers:
-                  markers
-                      .toSet(), // تحديد العلامات (Markers) التي ستظهر على الخريطة، يتم تحويل القائمة إلى Set
+              // إظهار موقع المستخدم الحالي على الخريطة إذا كانت الصلاحيات مفعلة
+              markers: markers.toSet(),
+              // تحديد العلامات (Markers) التي ستظهر على الخريطة، يتم تحويل القائمة إلى Set
               initialCameraPosition: CameraPosition(
-                target: LatLng(
-                  31.952409734006356,
-                  35.90800244361162,
-                ), // تحديد الموقع الأولي الذي سيتم عرض الخريطة عنده (إحداثيات خط العرض والطول)
+                target: LatLng(31.952409734006356, 35.90800244361162),
+                // تحديد الموقع الأولي الذي سيتم عرض الخريطة عنده (إحداثيات خط العرض والطول)
                 zoom: 15, // مستوى التقريب (Zoom) عند تحميل الخريطة
               ),
               onMapCreated: (controller) {
@@ -89,12 +87,25 @@ class _LocationScreenState extends State<LocationScreen> {
               ),
               child: Row(
                 children: [
-                  IconButton(icon: Icon(Icons.arrow_back), onPressed: () {}),
+                  IconButton(
+                    icon: Icon(
+                      Icons.arrow_back,
+                      color: Theme.of(context).textTheme.bodyLarge?.color,
+                    ),
+                    onPressed: () {},
+                  ),
                   Expanded(
                     child: TextField(
                       decoration: InputDecoration(
-                        hintText: AppLocalizations.of(context)!.find_your_location,
-                        prefixIcon: Icon(Icons.search),
+                        hintText:
+                            AppLocalizations.of(context)!.find_your_location,
+                        hintStyle: TextStyle(
+                          color: Theme.of(context).textTheme.bodyLarge?.color,
+                        ),
+                        prefixIcon: Icon(
+                          Icons.search,
+                          color: Theme.of(context).textTheme.bodyLarge?.color,
+                        ),
                         border: InputBorder.none,
                       ),
                     ),
@@ -127,7 +138,10 @@ class _LocationScreenState extends State<LocationScreen> {
                 children: [
                   Text(
                     AppLocalizations.of(context)!.your_location,
-                    style: TextStyle(color: Colors.grey, fontSize: 14),
+                    style: TextStyle(
+                      color: Theme.of(context).textTheme.bodySmall?.color,
+                      fontSize: 14,
+                    ),
                   ),
                   SizedBox(height: 8),
 

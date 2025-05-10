@@ -112,7 +112,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             hintText: 'example@email.com',
                             type: TextInputType.emailAddress,
                             obscure: false,
-                            errorText: fieldErrors['email'] ?? '',
+                            errorText: fieldErrors['email']?.isNotEmpty == true ? fieldErrors['email'] : null,
                             onChange: (value) {
                               context.read<LoginCubit>().validateField(
                                 field: 'email',
@@ -132,7 +132,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 _obscurePassword
                                     ? Icons.visibility_off_outlined
                                     : Icons.visibility_outlined,
-                                color: Colors.grey,
+                                color: Colors.grey.shade600,
                               ),
                               onPressed: () {
                                 setState(() {
@@ -142,7 +142,8 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                             type: TextInputType.text,
                             obscure: _obscurePassword,
-                            errorText: fieldErrors['password'] ?? '',
+                            errorText: fieldErrors['password']?.isNotEmpty == true ? fieldErrors['password'] : null,
+
                             onChange: (value) {
                               context.read<LoginCubit>().validateField(
                                 field: 'password',
@@ -179,7 +180,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   Text(
                                     AppLocalizations.of(context)!.remember_me,
                                     style: TextStyle(
-                                      color: Colors.grey[700],
+                                      color: Theme.of(context).textTheme.bodySmall?.color,
                                       fontSize: 14,
                                     ),
                                   ),
@@ -242,7 +243,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 child: Text(
                                   'Or',
                                   style: TextStyle(
-                                    color: Colors.grey[600],
+                                    color: Theme.of(context).textTheme.bodySmall?.color,
                                     fontSize: 14,
                                   ),
                                 ),

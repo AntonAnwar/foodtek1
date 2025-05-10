@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:foodtek/view/screen/main_screens/main_page.dart';
 import 'package:foodtek/view/widgets/auth/foodtek_button.dart';
+import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 
 import '../../history/order_details_page.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -11,16 +12,17 @@ class OrderSuccessScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
         title: Text(
           AppLocalizations.of(context)!.checkout,
-          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+          style: TextStyle(color: Theme.of(context).textTheme.bodyLarge!.color, fontWeight: FontWeight.bold),
         ),
         actions: [
           IconButton(
-            icon: Icon(Icons.notifications_outlined, color: Colors.black),
+            icon: Icon(Icons.notifications_outlined, color:  Theme.of(context).textTheme.bodyLarge?.color),
             onPressed: () {},
           ),
         ],
@@ -61,9 +63,15 @@ class OrderSuccessScreen extends StatelessWidget {
             FoodtekButton(
               text: AppLocalizations.of(context)!.track_your_order,
               onPressed: () {
-                Navigator.pushReplacement(
+                // Navigator.pushReplacement(
+                //   context,
+                //   MaterialPageRoute(builder: (context) => MainPage()),
+                // );
+                PersistentNavBarNavigator.pushNewScreen(
                   context,
-                  MaterialPageRoute(builder: (context) => MainPage()),
+                  screen:  OrderDetailsPage(),
+                  withNavBar: true, // OPTIONAL VALUE. True by default.
+                  pageTransitionAnimation: PageTransitionAnimation.cupertino,
                 );
               },
             ),

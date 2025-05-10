@@ -36,11 +36,12 @@ class _ChatPageState extends State<ChatPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
-        title:  Text(AppLocalizations.of(context)!.chat, style: TextStyle(color: Colors.black)),
-        backgroundColor: Colors.white,
+        title:  Text(AppLocalizations.of(context)!.chat, style: TextStyle(color: Theme.of(context).textTheme.bodyLarge?.color)),
+        backgroundColor:  Theme.of(context).colorScheme.surface,
         elevation: 0,
-        leading: const BackButton(color: Colors.black),
+        leading:  BackButton(color: Theme.of(context).textTheme.bodyLarge?.color),
       ),
       body: Column(
         children: [

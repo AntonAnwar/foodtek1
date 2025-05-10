@@ -28,7 +28,7 @@ class _OtpScreenState extends State<OtpScreen> {
               child: Container(
                 margin: const EdgeInsets.symmetric(horizontal: 20),
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: Theme.of(context).colorScheme.surface,
                   borderRadius: BorderRadius.circular(12),
                   boxShadow: [
                     BoxShadow(
@@ -60,7 +60,7 @@ class _OtpScreenState extends State<OtpScreen> {
                             Text(
                               AppLocalizations.of(context)!.otp_message,
                               style: TextStyle(
-                                color: Colors.grey[500],
+                                color: Theme.of(context).textTheme.bodySmall?.color,
                                 fontSize: 12,
                               ),
                             ),

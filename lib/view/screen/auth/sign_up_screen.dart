@@ -12,6 +12,7 @@ import 'package:foodtek/view/widgets/auth/foodtek_button.dart';
 import 'package:date_format_field/date_format_field.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 class SignUpScreen extends StatelessWidget {
   final GlobalKey<FormState> formkey = GlobalKey();
   final TextEditingController nameController = TextEditingController();
@@ -99,7 +100,8 @@ class SignUpScreen extends StatelessWidget {
                           CustomTextFelidWidget(
                             controller: nameController,
                             label: AppLocalizations.of(context)!.full_name,
-                            hintText: AppLocalizations.of(context)!.enter_full_name,
+                            hintText:
+                                AppLocalizations.of(context)!.enter_full_name,
                             type: TextInputType.text,
                             obscure: false,
                             validator: (value) {
@@ -109,7 +111,11 @@ class SignUpScreen extends StatelessWidget {
                               );
                               return null;
                             },
-                            errorText: fieldErrors['name'] ?? "",
+                            errorText:
+                                fieldErrors['name']?.isNotEmpty == true
+                                    ? fieldErrors['name']
+                                    : null,
+                            //errorText: fieldErrors['name'] ?? "",
                             onChange: (value) {
                               signUpCubit.validateField(
                                 field: 'name',
@@ -133,7 +139,12 @@ class SignUpScreen extends StatelessWidget {
                               return null;
                             },
 
-                            errorText: fieldErrors['email'] ?? "",
+                            //errorText: fieldErrors['email'] ?? "",
+                            errorText:
+                                fieldErrors['email']?.isNotEmpty == true
+                                    ? fieldErrors['email']
+                                    : null,
+
                             onChange: (value) {
                               signUpCubit.validateField(
                                 field: 'email',
@@ -163,24 +174,40 @@ class SignUpScreen extends StatelessWidget {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(AppLocalizations.of(context)!.birthdate),
+                                Text(
+                                  AppLocalizations.of(context)!.birthdate,
+                                  style: TextStyle(
+                                    color:
+                                        Theme.of(
+                                          context,
+                                        ).textTheme.bodyLarge!.color,
+                                  ),
+                                ),
                                 SizedBox(height: 8),
                                 DateFormatField(
                                   controller: dateController,
                                   decoration: InputDecoration(
                                     filled: true,
-                                    fillColor: Colors.grey[100],
+                                    fillColor:
+                                        Theme.of(
+                                          context,
+                                        ).inputDecorationTheme.fillColor,
                                     hintText: '18/03/2024',
-                                    errorText: fieldErrors['date'],
+                                    //errorText: fieldErrors['date'],
+                                    errorText:
+                                        fieldErrors['date']?.isNotEmpty == true
+                                            ? fieldErrors['date']
+                                            : null,
+
                                     // 🛑 Show error if exists
                                     border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(8),
-                                      borderSide: BorderSide.none,
+                                      //borderSide: BorderSide.none,
                                     ),
                                     enabledBorder: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(8),
                                       borderSide: BorderSide(
-                                        color: Colors.grey[300]!,
+                                        color: Colors.grey[400]!,
                                         width: 1,
                                       ),
                                     ),
@@ -231,46 +258,118 @@ class SignUpScreen extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
 
                               children: [
-                                Text(AppLocalizations.of(context)!.phone_number),
-                                SizedBox(height: 8),
-                                IntlPhoneField(
-                                  controller: phoneController,
-                                  decoration: InputDecoration(
-                                    filled: true,
-                                    fillColor: Colors.grey[100],
-                                    labelText: AppLocalizations.of(context)!.enter_phone,
-                                    border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(8),
-                                      borderSide: BorderSide.none,
-                                    ),
-                                    enabledBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(8),
-                                      borderSide: BorderSide(
-                                        color: Colors.grey[300]!,
-                                        width: 1,
-                                      ),
-                                    ),
-                                    focusedBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(8),
-                                      borderSide: BorderSide(
-                                        color: Color(0xFF38B443),
-                                        width: 1,
-                                      ),
-                                    ),
-                                    errorText: fieldErrors['phone'],
+                                Text(
+                                  AppLocalizations.of(context)!.phone_number,
+                                  style: TextStyle(
+                                    color:
+                                        Theme.of(
+                                          context,
+                                        ).textTheme.bodyLarge!.color,
                                   ),
-                                  initialCountryCode: 'JO',
-                                  // Or whatever default you'd like
-                                  onChanged: (phone) {
-                                    signUpCubit.validateField(
-                                      field: 'phone',
-                                      value: phone.completeNumber,
-                                    );
-                                  },
-                                  onCountryChanged: (country) {
-                                    // Optional: do something when the country changes
-                                  },
                                 ),
+                                SizedBox(height: 8),
+                                // IntlPhoneField(
+                                //   controller: phoneController,
+                                //   decoration: InputDecoration(
+                                //     filled: true,
+                                //     fillColor:
+                                //         Theme.of(
+                                //           context,
+                                //         ).inputDecorationTheme.fillColor,
+                                //     labelText:
+                                //         AppLocalizations.of(
+                                //           context,
+                                //         )!.enter_phone,
+                                //     labelStyle: TextStyle(
+                                //       color:
+                                //           Theme.of(
+                                //             context,
+                                //           ).textTheme.bodyLarge!.color,
+                                //     ),
+                                //     border: OutlineInputBorder(
+                                //       borderRadius: BorderRadius.circular(8),
+                                //       //borderSide: BorderSide.none,
+                                //     ),
+                                //     enabledBorder: OutlineInputBorder(
+                                //       borderRadius: BorderRadius.circular(8),
+                                //       borderSide: BorderSide(
+                                //         color: Colors.grey[400]!,
+                                //         width: 1,
+                                //       ),
+                                //     ),
+                                //     focusedBorder: OutlineInputBorder(
+                                //       borderRadius: BorderRadius.circular(8),
+                                //       borderSide: BorderSide(
+                                //         color: Color(0xFF38B443),
+                                //         width: 1,
+                                //       ),
+                                //     ),
+                                //     //errorText: fieldErrors['phone'],
+                                //     errorText:
+                                //         fieldErrors['phone']?.isNotEmpty == true
+                                //             ? fieldErrors['phone']
+                                //             : null,
+                                //   ),
+                                //   initialCountryCode: 'JO',
+                                //   // Or whatever default you'd like
+                                //   onChanged: (phone) {
+                                //     signUpCubit.validateField(
+                                //       field: 'phone',
+                                //       value: phone.completeNumber,
+                                //     );
+                                //   },
+                                //   onCountryChanged: (country) {
+                                //     // Optional: do something when the country changes
+                                //   },
+                                // ),
+                                Material(
+                                  color: Colors.transparent,
+                                  child: IntlPhoneField(
+                                    controller: phoneController,
+                                    style: TextStyle(
+                                      color: Theme.of(context).textTheme.bodyLarge?.color,
+                                    ),
+                                    dropdownTextStyle: TextStyle(
+                                      color: Theme.of(context).textTheme.bodyLarge?.color,
+                                    ),
+                                    decoration: InputDecoration(
+                                      filled: true,
+                                      fillColor: Theme.of(context).inputDecorationTheme.fillColor,
+                                      labelText: AppLocalizations.of(context)!.enter_phone,
+                                      labelStyle: TextStyle(
+                                        color: Theme.of(context).textTheme.bodyLarge?.color,
+                                      ),
+                                      border: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(8),
+                                      ),
+                                      enabledBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(8),
+                                        borderSide: BorderSide(
+                                          color: Colors.grey[400]!,
+                                          width: 1,
+                                        ),
+                                      ),
+                                      focusedBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(8),
+                                        borderSide: BorderSide(
+                                          color: Color(0xFF38B443),
+                                          width: 1,
+                                        ),
+                                      ),
+                                      errorText: fieldErrors['phone']?.isNotEmpty == true
+                                          ? fieldErrors['phone']
+                                          : null,
+                                    ),
+                                    initialCountryCode: 'JO',
+                                    onChanged: (phone) {
+                                      signUpCubit.validateField(
+                                        field: 'phone',
+                                        value: phone.completeNumber,
+                                      );
+                                    },
+                                  ),
+                                ),
+
                               ],
                             ),
                           ),
@@ -285,7 +384,10 @@ class SignUpScreen extends StatelessWidget {
                                 obscurePassword
                                     ? Icons.visibility_off_outlined
                                     : Icons.visibility_outlined,
-                                color: Colors.grey,
+                                color:
+                                    Theme.of(
+                                      context,
+                                    ).textTheme.bodyLarge?.color,
                               ),
                               onPressed: () {
                                 signUpCubit.togglePasswordVisibility();
@@ -300,7 +402,11 @@ class SignUpScreen extends StatelessWidget {
                               );
                               return null;
                             },
-                            errorText: fieldErrors['password'] ?? "",
+                            // errorText: fieldErrors['password'] ?? "",
+                            errorText:
+                                fieldErrors['password']?.isNotEmpty == true
+                                    ? fieldErrors['password']
+                                    : null,
                             onChange: (value) {
                               signUpCubit.validateField(
                                 field: 'password',
@@ -315,7 +421,7 @@ class SignUpScreen extends StatelessWidget {
                     const SizedBox(height: 24),
                     FoodtekButton(
                       text:
-                          state is SignUpLoading ? "Processing..." : "Register",
+                          state is SignUpLoading ? "Processing..." : AppLocalizations.of(context)!.register,
                       onPressed:
                           state is SignUpLoading
                               ? null // تعطيل الزر أثناء التحميل

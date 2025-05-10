@@ -99,7 +99,7 @@ class FilterScreenState extends State<FilterScreen> {
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       //appBar: AppBar(title: Text("Filter"), centerTitle: true),
       body: SingleChildScrollView(
         padding: EdgeInsets.all(10),
@@ -115,7 +115,11 @@ class FilterScreenState extends State<FilterScreen> {
                 children: [
                   Text(
                     AppLocalizations.of(context)!.filter,
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20,
+                      color: Theme.of(context).textTheme.bodyLarge?.color,
+                    ),
                   ),
                   // Price Range
                   SizedBox(height: height * .02),
@@ -131,10 +135,16 @@ class FilterScreenState extends State<FilterScreen> {
                           ),
                           child: Align(
                             alignment:
-                                context.read<LangCubit>().state.languageCode == "en"
+                                context.read<LangCubit>().state.languageCode ==
+                                        "en"
                                     ? Alignment.centerLeft
                                     : Alignment.centerRight,
-                            child: Text(AppLocalizations.of(context)!.min),
+                            child: Text(
+                              AppLocalizations.of(context)!.min,
+                              style: TextStyle(
+                                color: Theme.of(context).textTheme.bodyLarge?.color,
+                              ),
+                            ),
                           ),
                         ),
                       ),
@@ -148,12 +158,16 @@ class FilterScreenState extends State<FilterScreen> {
                           ),
                           child: Align(
                             alignment:
-                                context.read<LangCubit>().state.languageCode == "en"
+                                context.read<LangCubit>().state.languageCode ==
+                                        "en"
                                     ? Alignment.centerLeft
                                     : Alignment.centerRight,
                             child: Text(
                               AppLocalizations.of(context)!.max,
-                              textAlign: TextAlign.left,
+                              //textAlign: TextAlign.left,
+                              style: TextStyle(
+                                color: Theme.of(context).textTheme.bodyLarge?.color,
+                              ),
                             ),
                           ),
                         ),
@@ -217,12 +231,16 @@ class FilterScreenState extends State<FilterScreen> {
                           ),
                           child: Align(
                             alignment:
-                                context.read<LangCubit>().state.languageCode == "en"
+                                context.read<LangCubit>().state.languageCode ==
+                                        "en"
                                     ? Alignment.centerLeft
                                     : Alignment.centerRight,
                             child: Text(
                               AppLocalizations.of(context)!.min,
                               textAlign: TextAlign.left,
+                              style: TextStyle(
+                                color: Theme.of(context).textTheme.bodyLarge?.color,
+                              ),
                             ),
                           ),
                         ),
@@ -237,12 +255,16 @@ class FilterScreenState extends State<FilterScreen> {
                           ),
                           child: Align(
                             alignment:
-                                context.read<LangCubit>().state.languageCode == "en"
+                                context.read<LangCubit>().state.languageCode ==
+                                        "en"
                                     ? Alignment.centerLeft
                                     : Alignment.centerRight,
                             child: Text(
                               AppLocalizations.of(context)!.max,
                               textAlign: TextAlign.left,
+                              style: TextStyle(
+                                color: Theme.of(context).textTheme.bodyLarge?.color,
+                              ),
                             ),
                           ),
                         ),
@@ -292,11 +314,16 @@ class FilterScreenState extends State<FilterScreen> {
                       ),
                     ],
                   ),
-                  SizedBox(height: height * .02),
+                  SizedBox(height: height * .025),
                   Text(
                     AppLocalizations.of(context)!.category,
-                    style: TextStyle(fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color:Theme.of(context).textTheme.bodyLarge?.color,
+                    ),
                   ),
+                  SizedBox(height: height*.01,),
+
                   Wrap(
                     spacing: 8,
                     children:
@@ -305,7 +332,6 @@ class FilterScreenState extends State<FilterScreen> {
                             showCheckmark: false,
                             selectedColor: AppColors.primaryColor,
                             backgroundColor: Colors.white,
-
                             label: Text(
                               category,
                               style: TextStyle(
@@ -324,19 +350,24 @@ class FilterScreenState extends State<FilterScreen> {
                           );
                         }).toList(),
                   ),
-                  SizedBox(height: 16),
+                  SizedBox(height: height*.02,),
 
                   // Location Selection
                   Text(
                     AppLocalizations.of(context)!.location,
-                    style: TextStyle(fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Theme.of(context).textTheme.bodyLarge?.color,
+                    ),
                   ),
+                  SizedBox(height: height*.01,),
                   ToggleButtons(
-                    selectedColor: Colors.white,
+                    selectedColor: Theme.of(context).textTheme.bodyLarge?.color,
                     // text color when selected
-                    color: Colors.black,
+                    color: Theme.of(context).textTheme.bodyLarge?.color,
                     // text color when NOT selected
                     fillColor: AppColors.primaryColor,
+
                     // background when selected
                     //borderColor: AppColors.primaryColor,           // optional
                     // optional
@@ -361,13 +392,18 @@ class FilterScreenState extends State<FilterScreen> {
                             .toList(),
                   ),
 
-                  SizedBox(height: 16),
+                  SizedBox(height: height*.02,),
 
                   // Dishes Selection
                   Text(
                     AppLocalizations.of(context)!.dish,
-                    style: TextStyle(fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Theme.of(context).textTheme.bodyLarge?.color,
+                    ),
                   ),
+                  SizedBox(height: height*.01,),
+
                   Wrap(
                     spacing: 8,
                     children:

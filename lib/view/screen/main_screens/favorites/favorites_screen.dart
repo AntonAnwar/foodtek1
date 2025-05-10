@@ -14,7 +14,7 @@ class FavoritesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -24,7 +24,7 @@ class FavoritesScreen extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
             child: Text(
               AppLocalizations.of(context)!.favorite,
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold,color: Theme.of(context).textTheme.bodyLarge?.color),
             ),
           ),
           Expanded(
@@ -56,7 +56,7 @@ class FavoritesScreen extends StatelessWidget {
                         clipBehavior: Clip.none,
                         children: [
                           Card(
-                            color: Colors.white,
+                            color: Theme.of(context).colorScheme.surface,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(20),
                             ),
@@ -73,7 +73,8 @@ class FavoritesScreen extends StatelessWidget {
                                 children: [
                                   Text(
                                     item.name,
-                                    style: const TextStyle(
+                                    style:  TextStyle(
+                                      color: Theme.of(context).textTheme.bodyLarge?.color,
                                       fontWeight: FontWeight.bold,
                                       fontSize: 16,
                                     ),
@@ -82,8 +83,8 @@ class FavoritesScreen extends StatelessWidget {
                                   const SizedBox(height: 5),
                                   Text(
                                     item.description,
-                                    style: const TextStyle(
-                                      color: Colors.grey,
+                                    style:  TextStyle(
+                                      color: Theme.of(context).textTheme.bodySmall?.color,
                                       fontSize: 12,
                                     ),
                                     maxLines: 2,
@@ -93,8 +94,8 @@ class FavoritesScreen extends StatelessWidget {
                                   const SizedBox(height: 12),
                                   Text(
                                     '${item.price}',
-                                    style: const TextStyle(
-                                      color: Colors.black,
+                                    style:  TextStyle(
+                                      color: AppColors.primaryColor,
                                       fontWeight: FontWeight.bold,
                                       fontSize: 16,
                                     ),
@@ -150,7 +151,7 @@ class FavoritesScreen extends StatelessWidget {
                                             content: Container(
                                               padding: EdgeInsets.all(20),
                                               decoration: BoxDecoration(
-                                                color: Colors.white,
+                                                color: Theme.of(context).colorScheme.surface,
                                                 borderRadius:
                                                     BorderRadius.circular(15),
                                               ),
@@ -161,6 +162,7 @@ class FavoritesScreen extends StatelessWidget {
                                                     AppLocalizations.of(context)!.remove_from_favorite,
                                                     textAlign: TextAlign.center,
                                                     style: TextStyle(
+                                                      color: Theme.of(context).textTheme.bodyLarge?.color,
                                                       fontSize: 16,
                                                       fontWeight:
                                                           FontWeight.w500,

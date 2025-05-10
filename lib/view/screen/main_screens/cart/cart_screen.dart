@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:foodtek/view/screen/main_screens/cart/checkout/location_screeen.dart';
+import 'package:foodtek/view/screen/main_screens/cart/checkout/location_screen.dart';
 import 'package:foodtek/view/widgets/cart/cart_item_widget.dart';
 import 'package:foodtek/view/widgets/cart/check_out_widget.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
@@ -39,7 +39,7 @@ class _CartScreennnState extends State<CartScreen> {
             PersistentNavBarNavigator.pushNewScreen(
               context,
               screen:  LocationScreen(),
-              withNavBar: false, // OPTIONAL VALUE. True by default.
+              withNavBar: true, // OPTIONAL VALUE. True by default.
               pageTransitionAnimation: PageTransitionAnimation.cupertino,
             );
             // Navigator.push(

@@ -39,15 +39,15 @@ class CustomAuthCard extends StatelessWidget {
       child: Container(
         margin: const EdgeInsets.symmetric(horizontal: 20),
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: Theme.of(context).colorScheme.secondary,
           borderRadius: BorderRadius.circular(12),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.1),
-              blurRadius: 6,
-              spreadRadius: 2,
-            ),
-          ],
+          // boxShadow: [
+          //   BoxShadow(
+          //     color: Colors.black.withOpacity(0.1),
+          //     blurRadius: 6,
+          //     spreadRadius: 2,
+          //   ),
+          // ],
         ),
         child: Padding(
           padding: const EdgeInsets.all(24.0),
@@ -91,7 +91,8 @@ class CustomAuthCard extends StatelessWidget {
                 // the rest password text
                 title,
                 textAlign: titleAlign,
-                style: const TextStyle(
+                style: TextStyle(
+                  color: Theme.of(context).textTheme.bodyLarge!.color,
                   fontWeight: FontWeight.bold,
                   fontSize: 24,
                 ),
@@ -108,7 +109,10 @@ class CustomAuthCard extends StatelessWidget {
                       Text(
                         description!,
                         textAlign: descriptionAlign,
-                        style: TextStyle(fontSize: 12),
+                        style: TextStyle(
+                          fontSize: 12,
+                          color: Theme.of(context).textTheme.bodySmall!.color,
+                        ),
                       ),
 
                       GestureDetector(

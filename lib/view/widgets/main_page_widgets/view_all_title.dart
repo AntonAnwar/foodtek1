@@ -18,7 +18,7 @@ class ViewAllTitleRow extends StatelessWidget {
         Text(
           title,
           style: TextStyle(
-            color: AppColors.onBoardingtextColor,
+            color: Theme.of(context).textTheme.bodyLarge?.color,
             fontSize: 20,
             fontWeight: FontWeight.w800,
           ),

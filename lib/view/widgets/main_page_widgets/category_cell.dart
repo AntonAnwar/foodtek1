@@ -25,11 +25,13 @@ class CategoryCell extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return isRecommended ? _buildRecommendedItem() : _buildMainCategoryItem();
+    return isRecommended
+        ? _buildRecommendedItem(context)
+        : _buildMainCategoryItem(context);
   }
 
   // UI for "Recommended" small rounded items
-  Widget _buildRecommendedItem() {
+  Widget _buildRecommendedItem(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: InkWell(
@@ -53,7 +55,7 @@ class CategoryCell extends StatelessWidget {
                   child: Container(
                     padding: EdgeInsets.symmetric(horizontal: 6, vertical: 3),
                     decoration: BoxDecoration(
-                      color: Colors.green,
+                      color: Theme.of(context).colorScheme.primary,
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: Text(
@@ -74,23 +76,23 @@ class CategoryCell extends StatelessWidget {
     );
   }
 
-  Widget _buildMainCategoryItem() {
+  Widget _buildMainCategoryItem(BuildContext context) {
     return Container(
       width: 160,
       height: 200,
       padding: EdgeInsets.all(8),
       margin: EdgeInsets.symmetric(horizontal: 8),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Theme.of(context).colorScheme.surface,
         borderRadius: BorderRadius.circular(10),
         border: Border.all(color: Colors.grey.shade300),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.shade200,
-            blurRadius: 5,
-            spreadRadius: 2,
-          ),
-        ],
+        // boxShadow: [
+        //   BoxShadow(
+        //     color: Colors.grey.shade200,
+        //     blurRadius: 5,
+        //     spreadRadius: 2,
+        //   ),
+        // ],
       ),
       child: InkWell(
         onTap: onTap,
@@ -111,7 +113,7 @@ class CategoryCell extends StatelessWidget {
                   Text(
                     rating?.toString() ?? '0.0',
                     style: TextStyle(
-                      color: Colors.black,
+                      color: Theme.of(context).textTheme.bodyLarge?.color,
                       fontSize: 14,
                       fontWeight: FontWeight.bold,
                     ),
@@ -135,7 +137,7 @@ class CategoryCell extends StatelessWidget {
                   Text(
                     cObj,
                     style: TextStyle(
-                      color: Colors.black,
+                      color: Theme.of(context).textTheme.bodyLarge?.color,
                       fontSize: 14,
                       fontWeight: FontWeight.w700,
                     ),
@@ -146,7 +148,10 @@ class CategoryCell extends StatelessWidget {
                   Expanded(
                     child: Text(
                       description,
-                      style: TextStyle(color: Colors.grey, fontSize: 12),
+                      style: TextStyle(
+                        color: Theme.of(context).textTheme.bodySmall?.color,
+                        fontSize: 12,
+                      ),
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                     ),
@@ -170,7 +175,7 @@ class CategoryCell extends StatelessWidget {
                 ),
                 InkWell(
                   onTap: () {
-                  print("hi");
+                    print("hi");
                   },
                   child: Container(
                     padding: EdgeInsets.all(5),
@@ -178,7 +183,11 @@ class CategoryCell extends StatelessWidget {
                       color: Colors.green,
                       shape: BoxShape.circle,
                     ),
-                    child: Icon(Icons.add, color: Colors.white, size: 20),
+                    child: Icon(
+                      Icons.add,
+                      color: Theme.of(context).textTheme.bodyLarge?.color,
+                      size: 20,
+                    ),
                   ),
                 ),
               ],

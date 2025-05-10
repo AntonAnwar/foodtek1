@@ -40,6 +40,8 @@ class _DeliveryTrackingScreenState extends State<DeliveryTrackingScreen> {
   Widget build(BuildContext context) {
     TextEditingController txtSearch = TextEditingController();
     return Scaffold(
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+
       body: Column(
         children: [
           // Static image replacing the map

@@ -101,11 +101,13 @@
 // }
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:foodtek/constant/colors.dart';
 import '../../../../cubit/main_cubit/favorites_cubit.dart';
 import '../../../../model/category.dart';
 import '../../../../core/responseve.dart';
 import 'item_details_screen.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 class ItemScreen extends StatelessWidget {
   final List<Category> categoryItems;
 
@@ -114,7 +116,6 @@ class ItemScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
-
       padding: const EdgeInsets.only(
         top: 10,
         bottom: 100, // Add bottom padding to avoid bottom bar!
@@ -135,31 +136,34 @@ class ItemScreen extends StatelessWidget {
           clipBehavior: Clip.none,
           children: [
             Card(
-              color: Colors.white,
+              color: Theme.of(context).colorScheme.surface,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20),
               ),
               //elevation: 3,
               child: Padding(
-                padding: const EdgeInsets.only(top: 45, bottom: 35,left: 10,right: 10),
+                padding: const EdgeInsets.only(
+                  top: 45,
+                  bottom: 35,
+                  left: 10,
+                  right: 10,
+                ),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Text(
                       item.title,
-                      style: const TextStyle(
+                      style:  TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 16,
+                        color: Theme.of(context).textTheme.bodyLarge?.color
                       ),
                       textAlign: TextAlign.center,
                     ),
                     const SizedBox(height: 5),
                     Text(
                       item.description,
-                      style: const TextStyle(
-                        color: Colors.grey,
-                        fontSize: 12,
-                      ),
+                      style:  TextStyle(color: Theme.of(context).textTheme.bodySmall?.color, fontSize: 12),
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                       textAlign: TextAlign.center,
@@ -167,8 +171,8 @@ class ItemScreen extends StatelessWidget {
                     const SizedBox(height: 12),
                     Text(
                       '${item.price}',
-                      style: const TextStyle(
-                        color: Colors.black,
+                      style:  TextStyle(
+                        color: AppColors.primaryColor,
                         fontWeight: FontWeight.bold,
                         fontSize: 16,
                       ),
@@ -177,7 +181,7 @@ class ItemScreen extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: 30,),
+            SizedBox(height: 30),
 
             // Top Image (half in, half out)
             Positioned(
@@ -202,7 +206,7 @@ class ItemScreen extends StatelessWidget {
             Positioned(
               top: -10,
               right: -10,
-              child:  BlocBuilder<FavoritesCubit, FavoritesState>(
+              child: BlocBuilder<FavoritesCubit, FavoritesState>(
                 builder: (context, state) {
                   final favCubit = context.read<FavoritesCubit>();
 
@@ -222,7 +226,7 @@ class ItemScreen extends StatelessWidget {
                     child: IconButton(
                       icon: Icon(
                         isFav ? Icons.favorite : Icons.favorite_border,
-                        color: isFav ?Colors.red :Colors.grey,
+                        color: isFav ? Colors.red : Colors.grey,
                       ),
                       onPressed: () {
                         favCubit.toggleFavorite(favoriteItem);
@@ -263,9 +267,9 @@ class ItemScreen extends StatelessWidget {
                       borderRadius: BorderRadius.circular(20),
                     ),
                   ),
-                  child:  Text(
+                  child: Text(
                     AppLocalizations.of(context)!.order_now,
-                    style: TextStyle(color: Colors.white),
+                    style: TextStyle(color: Theme.of(context).textTheme.bodyLarge?.color),
                   ),
                 ),
               ),
